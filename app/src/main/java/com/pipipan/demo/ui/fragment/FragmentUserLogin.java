@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.hjq.bar.TitleBar;
@@ -37,12 +38,20 @@ public class FragmentUserLogin extends MyLazyFragment
     TitleBar titleBar;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.login)
-    Button button;
     @BindView(R.id.ctl_bar)
     XCollapsingToolbarLayout mCollapsingToolbarLayout;
     @BindView(R.id.logout)
     RelativeLayout logout;
+    @BindView(R.id.address)
+    RelativeLayout address;
+    @BindView(R.id.collection)
+    RelativeLayout collect;
+    @BindView(R.id.client)
+    RelativeLayout client;
+    @BindView(R.id.name)
+    TextView name;
+    @BindView(R.id.phone)
+    TextView phone;
 
     @Override
     protected int getLayoutId() {
@@ -80,7 +89,8 @@ public class FragmentUserLogin extends MyLazyFragment
 
     @Override
     protected void initData() {
-
+        name.setText(Constants.user.getName());
+        phone.setText(Constants.user.getPhone());
     }
 
     @Override

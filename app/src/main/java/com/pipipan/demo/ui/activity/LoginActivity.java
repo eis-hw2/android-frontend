@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.pipipan.demo.R;
+import com.pipipan.demo.common.Constants;
 import com.pipipan.demo.common.MyActivity;
 import com.pipipan.demo.helper.CommonUtil;
 import com.pipipan.demo.helper.InputTextHelper;

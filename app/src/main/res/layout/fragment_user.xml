@@ -60,19 +60,100 @@ tools:context=".ui.fragment.FragmentUser">
 </android.support.design.widget.AppBarLayout>
 
 <android.support.v4.widget.NestedScrollView
+    android:layout_marginTop="10dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/space_60"
-        android:layout_marginRight="@dimen/space_60"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
+    <RelativeLayout
+        android:background="@color/white"
+        android:id="@+id/address"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <ImageView
+            android:id="@+id/address_image"
+            android:src="@mipmap/address"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:layout_width="25dp"
+            android:layout_height="25dp" />
+        <TextView
+            android:layout_toRightOf="@id/address_image"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="收货地址"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/ic_arrow_right"
+            android:layout_width="14dp"
+            android:layout_height="14dp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:background="@color/white"
+        android:id="@+id/collection"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <ImageView
+            android:id="@+id/collection_image"
+            android:src="@mipmap/collect"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:layout_width="25dp"
+            android:layout_height="25dp" />
+        <TextView
+            android:layout_toRightOf="@id/collection_image"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="我的收藏"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/ic_arrow_right"
+            android:layout_width="14dp"
+            android:layout_height="14dp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:background="@color/white"
+        android:id="@+id/client"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <ImageView
+            android:id="@+id/client_image"
+            android:src="@mipmap/client"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:layout_width="25dp"
+            android:layout_height="25dp" />
+        <TextView
+            android:layout_toRightOf="@id/client_image"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="我的客服"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/ic_arrow_right"
+            android:layout_width="14dp"
+            android:layout_height="14dp" />
+    </RelativeLayout>
     </LinearLayout>
-
 </android.support.v4.widget.NestedScrollView>
 
 </android.support.design.widget.CoordinatorLayout>

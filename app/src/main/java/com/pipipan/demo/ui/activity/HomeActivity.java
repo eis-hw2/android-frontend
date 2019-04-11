@@ -16,6 +16,7 @@ import com.pipipan.demo.R;
 import com.pipipan.demo.common.Constants;
 import com.pipipan.demo.common.MyActivity;
 import com.pipipan.demo.common.MyLazyFragment;
+import com.pipipan.demo.domain.User;
 import com.pipipan.demo.helper.ActivityStackManager;
 import com.pipipan.demo.helper.CommonUtil;
 import com.pipipan.demo.helper.DoubleClickHelper;
@@ -91,7 +92,9 @@ public class HomeActivity extends MyActivity
         receiver= new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
+                Constants.user_id = CommonUtil.getStringFromSharedPreference(getContext(), "user_id");
                 if (intent.getBooleanExtra("isLogin", true)){
+                    prepareUserInformation();
                     mPagerAdapter.refresh(3, new FragmentUserLogin());
                     Log.i(TAG, "onReceive: login success");
                     Log.i(TAG, mPagerAdapter.getAllFragment().toString());
@@ -107,9 +110,17 @@ public class HomeActivity extends MyActivity
 
         Constants.user_id = CommonUtil.getStringFromSharedPreference(getContext(), "user_id");
         if (!Constants.user_id.isEmpty()){
-            //TODO 拉取用户信息并存入Constants.user
+            prepareUserInformation();
             sendBroadcast(new Intent("login"));
         }
+    }
+
+    private void prepareUserInformation() {
+        //TODO 拉取用户信息并存入Constants.user
+        User user = new User();
+        user.setName(Constants.user_id);
+        user.setPhone("18317126628");
+        Constants.user = user;
     }
 
     /**
