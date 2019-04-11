@@ -129,7 +129,7 @@ dependencies {
 
     // 圆形的ImageView：https://github.com/hdodenhof/CircleImageView
     implementation 'de.hdodenhof:circleimageview:2.2.0'
-
+    implementation 'com.youth.banner:banner:1.4.10'
     // 悬浮窗：https://github.com/getActivity/XToast
     // 网络请求：https://github.com/zhou-you/RxEasyHttp
     // RxJava: https://github.com/ReactiveX/RxAndroid

@@ -11,11 +11,9 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.hjq.toast.ToastUtils;
-import com.pipipan.base.BaseFragmentAdapter;
 import com.pipipan.demo.R;
 import com.pipipan.demo.common.Constants;
 import com.pipipan.demo.common.MyActivity;
-import com.pipipan.demo.common.MyLazyFragment;
 import com.pipipan.demo.domain.User;
 import com.pipipan.demo.helper.ActivityStackManager;
 import com.pipipan.demo.helper.CommonUtil;
@@ -23,14 +21,7 @@ import com.pipipan.demo.helper.DoubleClickHelper;
 import com.pipipan.demo.ui.adapter.MyAdapter;
 import com.pipipan.demo.ui.fragment.FragmentUser;
 import com.pipipan.demo.ui.fragment.FragmentUserLogin;
-import com.pipipan.demo.ui.fragment.TestFragmentA;
-import com.pipipan.demo.ui.fragment.TestFragmentB;
-import com.pipipan.demo.ui.fragment.TestFragmentC;
-import com.pipipan.demo.ui.fragment.TestFragmentD;
 import com.pipipan.image.ImageLoader;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 

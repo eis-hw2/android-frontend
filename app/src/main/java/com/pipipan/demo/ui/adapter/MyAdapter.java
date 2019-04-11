@@ -4,8 +4,8 @@ import android.support.v4.app.FragmentManager;
 
 import com.pipipan.base.BaseFragmentAdapter;
 import com.pipipan.demo.common.MyLazyFragment;
+import com.pipipan.demo.ui.fragment.FragmentMain;
 import com.pipipan.demo.ui.fragment.FragmentUser;
-import com.pipipan.demo.ui.fragment.TestFragmentA;
 import com.pipipan.demo.ui.fragment.TestFragmentB;
 import com.pipipan.demo.ui.fragment.TestFragmentC;
 
@@ -18,7 +18,7 @@ public class MyAdapter extends BaseFragmentAdapter<MyLazyFragment> {
 
     @Override
     protected void init(FragmentManager manager, List<MyLazyFragment> list) {
-        list.add(TestFragmentA.newInstance());
+        list.add(FragmentMain.newInstance());
         list.add(TestFragmentB.newInstance());
         list.add(TestFragmentC.newInstance());
         list.add(FragmentUser.getInstance());
