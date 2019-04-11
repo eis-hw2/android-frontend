@@ -53,7 +53,7 @@
 
             </LinearLayout>
 
-            <com.hjq.demo.widget.SettingBar
+            <com.pipipan.demo.widget.SettingBar
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true"
@@ -99,20 +99,20 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <com.hjq.widget.SwitchButton
+                <com.pipipan.widget.SwitchButton
                     android:id="@+id/sb_test_switch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/space_20"
                     android:checked="true" />
 
-                <com.hjq.widget.SwitchButton
+                <com.pipipan.widget.SwitchButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/space_20"
                     android:checked="false" />
 
-                <com.hjq.widget.SwitchButton
+                <com.pipipan.widget.SwitchButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/space_20"
@@ -135,7 +135,7 @@
                     android:layout_weight="1"
                     android:hint="请输入验证码" />
 
-                <com.hjq.widget.CountdownView
+                <com.pipipan.widget.CountdownView
                     android:id="@+id/cv_test_countdown"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -143,7 +143,7 @@
 
             </LinearLayout>
 
-            <com.hjq.widget.ClearEditText
+            <com.pipipan.widget.ClearEditText
                 style="@style/EditTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -163,7 +163,7 @@
 
             <View style="@style/HorizontalLineStyle" />
 
-            <com.hjq.widget.square.SquareFrameLayout
+            <com.pipipan.widget.square.SquareFrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_40"
@@ -176,9 +176,9 @@
                     android:text="这是一个正方形的FrameLayout"
                     android:textColor="@color/white" />
 
-            </com.hjq.widget.square.SquareFrameLayout>
+            </com.pipipan.widget.square.SquareFrameLayout>
 
-            <com.hjq.widget.square.SquareLinearLayout
+            <com.pipipan.widget.square.SquareLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorAccent"
@@ -192,9 +192,9 @@
                     android:text="这是一个正方形的LinearLayout"
                     android:textColor="@color/white" />
 
-            </com.hjq.widget.square.SquareLinearLayout>
+            </com.pipipan.widget.square.SquareLinearLayout>
 
-            <com.hjq.widget.square.SquareRelativeLayout
+            <com.pipipan.widget.square.SquareRelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorButtonPressed">
@@ -206,9 +206,9 @@
                     android:text="这是一个正方形的RelativeLayout"
                     android:textColor="@color/white" />
 
-            </com.hjq.widget.square.SquareRelativeLayout>
+            </com.pipipan.widget.square.SquareRelativeLayout>
 
-            <com.hjq.widget.square.SquareImageView
+            <com.pipipan.widget.square.SquareImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"

@@ -5,7 +5,7 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
         // 无痛修改包名：https://www.jianshu.com/p/17327e191d2e
-        applicationId "com.hjq.demo"
+        applicationId "com.pipipan.demo"
         minSdkVersion 14
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 10
