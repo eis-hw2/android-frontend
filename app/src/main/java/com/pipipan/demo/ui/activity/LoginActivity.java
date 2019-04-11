@@ -1,11 +1,13 @@
 package com.pipipan.demo.ui.activity;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.pipipan.demo.R;
 import com.pipipan.demo.common.MyActivity;
+import com.pipipan.demo.helper.CommonUtil;
 import com.pipipan.demo.helper.InputTextHelper;
 import com.hjq.toast.ToastUtils;
 
@@ -84,12 +86,11 @@ public class LoginActivity extends MyActivity {
                 startActivity(PasswordForgetActivity.class);
                 break;
             case R.id.btn_login_commit:
-                if (mPhoneView.getText().toString().length() != 11) {
-                    ToastUtils.show(getResources().getString(R.string.phone_input_error));
-                    break;
-                }
-                startActivityFinish(HomeActivity.class);
-                break;
+                //TODO 调用服务器API验证登录
+                CommonUtil.saveSharedPreference(getContext(), "user_id", "皮皮潘");
+                Intent intent = new Intent("login");
+                sendBroadcast(intent);
+                finish();
             default:
                 break;
         }

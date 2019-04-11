@@ -1,20 +1,35 @@
 package com.pipipan.demo.ui.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.MenuItem;
 
+import com.hjq.toast.ToastUtils;
 import com.pipipan.base.BaseFragmentAdapter;
 import com.pipipan.demo.R;
+import com.pipipan.demo.common.Constants;
 import com.pipipan.demo.common.MyActivity;
 import com.pipipan.demo.common.MyLazyFragment;
 import com.pipipan.demo.helper.ActivityStackManager;
+import com.pipipan.demo.helper.CommonUtil;
 import com.pipipan.demo.helper.DoubleClickHelper;
+import com.pipipan.demo.ui.adapter.MyAdapter;
+import com.pipipan.demo.ui.fragment.FragmentUser;
+import com.pipipan.demo.ui.fragment.FragmentUserLogin;
 import com.pipipan.demo.ui.fragment.TestFragmentA;
 import com.pipipan.demo.ui.fragment.TestFragmentB;
 import com.pipipan.demo.ui.fragment.TestFragmentC;
 import com.pipipan.demo.ui.fragment.TestFragmentD;
+import com.pipipan.image.ImageLoader;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -27,13 +42,15 @@ import butterknife.BindView;
 public class HomeActivity extends MyActivity
         implements ViewPager.OnPageChangeListener,
         BottomNavigationView.OnNavigationItemSelectedListener {
+    private static final String TAG = "HomeActivity";
 
     @BindView(R.id.vp_home_pager)
     ViewPager mViewPager;
     @BindView(R.id.bv_home_navigation)
     BottomNavigationView mBottomNavigationView;
+    BroadcastReceiver receiver;
 
-    private BaseFragmentAdapter<MyLazyFragment> mPagerAdapter;
+    private MyAdapter mPagerAdapter;
 
     @Override
     protected int getLayoutId() {
@@ -57,16 +74,42 @@ public class HomeActivity extends MyActivity
 
     @Override
     protected void initData() {
-        mPagerAdapter = new BaseFragmentAdapter<>(this);
-        mPagerAdapter.addFragment(TestFragmentA.newInstance());
-        mPagerAdapter.addFragment(TestFragmentB.newInstance());
-        mPagerAdapter.addFragment(TestFragmentC.newInstance());
-        mPagerAdapter.addFragment(TestFragmentD.newInstance());
-
+        mPagerAdapter = new MyAdapter(this);
         mViewPager.setAdapter(mPagerAdapter);
 
         // 限制页面数量
         mViewPager.setOffscreenPageLimit(mPagerAdapter.getCount());
+
+        // 初始化图片加载器
+        ImageLoader.init(getApplication());
+
+        // 初始化吐司工具类
+        ToastUtils.init(getApplication());
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("login");
+        receiver= new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if (intent.getBooleanExtra("isLogin", true)){
+                    mPagerAdapter.refresh(3, new FragmentUserLogin());
+                    Log.i(TAG, "onReceive: login success");
+                    Log.i(TAG, mPagerAdapter.getAllFragment().toString());
+                }
+                else {
+                    mPagerAdapter.refresh(3, new FragmentUser());
+                    Log.i(TAG, "onReceive: logout success");
+                    Log.i(TAG, mPagerAdapter.getAllFragment().toString());
+                }
+            }
+        };
+        registerReceiver(receiver, intentFilter);
+
+        Constants.user_id = CommonUtil.getStringFromSharedPreference(getContext(), "user_id");
+        if (!Constants.user_id.isEmpty()){
+            //TODO 拉取用户信息并存入Constants.user
+            sendBroadcast(new Intent("login"));
+        }
     }
 
     /**
@@ -152,6 +195,7 @@ public class HomeActivity extends MyActivity
         mViewPager.removeOnPageChangeListener(this);
         mViewPager.setAdapter(null);
         mBottomNavigationView.setOnNavigationItemSelectedListener(null);
+        unregisterReceiver(receiver);
         super.onDestroy();
     }
 

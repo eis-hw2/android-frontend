@@ -6,7 +6,7 @@ android {
     defaultConfig {
         // 无痛修改包名：https://www.jianshu.com/p/17327e191d2e
         applicationId "com.pipipan.demo"
-        minSdkVersion 14
+        minSdkVersion 24
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 10
         versionName "1.0"
@@ -77,6 +77,10 @@ android {
         main {
             jniLibs.srcDirs = ['libs']
         }
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
     }
 }
 

@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import java.util.List;
  *    time   : 2018/10/18
  *    desc   : FragmentPagerAdapter 基类
  */
-public class BaseFragmentAdapter<F extends Fragment> extends FragmentPagerAdapter {
+public abstract class BaseFragmentAdapter<F extends Fragment> extends FragmentStatePagerAdapter {
 
     private List<F> mFragmentSet = new ArrayList<>(); // Fragment集合
 
@@ -32,7 +33,10 @@ public class BaseFragmentAdapter<F extends Fragment> extends FragmentPagerAdapte
 
     public BaseFragmentAdapter(FragmentManager manager) {
         super(manager);
+        init(manager, mFragmentSet);
     }
+
+    protected abstract void init(FragmentManager manager, List<F> list);
 
     @Override
     public F getItem(int position) {
@@ -53,10 +57,6 @@ public class BaseFragmentAdapter<F extends Fragment> extends FragmentPagerAdapte
         super.setPrimaryItem(container, position, object);
     }
 
-    public void addFragment(F fragment) {
-        mFragmentSet.add(fragment);
-    }
-
     /**
      * 获取Fragment集合
      */
@@ -69,5 +69,10 @@ public class BaseFragmentAdapter<F extends Fragment> extends FragmentPagerAdapte
      */
     public F getCurrentFragment() {
         return mCurrentFragment;
+    }
+
+    @Override
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
     }
 }

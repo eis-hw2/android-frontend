@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.FragmentUser">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/abl_test_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:elevation="0dp">
+
+        <com.pipipan.demo.widget.XCollapsingToolbarLayout
+            android:id="@+id/ctl_bar"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:contentScrim="@color/white"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:scrimVisibleHeightTrigger="@dimen/space_200">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/douban_blue_80_percent"
+                app:layout_collapseMode="parallax">
+
+                <Button
+                    android:id="@+id/login"
+                    android:layout_width="140dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/shape_main_personal_login"
+                    android:layout_centerInParent="true"
+                    android:text="登录/注册"
+                    android:textColor="@color/black60"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                app:layout_collapseMode="pin" />
+
+            <com.hjq.bar.TitleBar
+                android:id="@+id/titlebar"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:backButton="false"
+                app:barStyle="transparent"
+                app:titleColor="@color/black"
+                app:titleSize="16sp"
+                app:layout_collapseMode="pin">
+            </com.hjq.bar.TitleBar>
+
+        </com.pipipan.demo.widget.XCollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/space_60"
+            android:layout_marginRight="@dimen/space_60"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+    <android.support.v4.widget.NestedScrollView android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_marginTop="10dp">
+        <RelativeLayout
+            android:background="@color/white"
+            android:id="@+id/logout"
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_height="60dp">
+            <ImageView
+                android:id="@+id/logout_image"
+                android:src="@mipmap/ic_logout"
+                android:layout_marginLeft="10dp"
+                android:layout_centerVertical="true"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+            <TextView
+                android:layout_toRightOf="@id/logout_image"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:text="退出登录"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:src="@mipmap/ic_arrow_right"
+                android:layout_width="14dp"
+                android:layout_height="14dp" />
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>
