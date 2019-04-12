@@ -65,5 +65,6 @@
     <!-- 关于 -->
     <string name="about_title">关于我们</string>
     <string name="about_copyright">Copyright © 2018</string>
+    <string name="title_activity_address">AddressActivity</string>
 
 </resources>

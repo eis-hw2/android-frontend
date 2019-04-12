@@ -105,7 +105,119 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <LinearLayout
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="70dp">
+                <RelativeLayout
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/money"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/money_counts"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/douban_blue_80_percent"
+                            android:textSize="20sp"
+                            android:text="1234"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/douban_blue_80_percent"
+                            android:text="元"/>
+
+                    </LinearLayout>
+                    <TextView
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@+id/money"
+                        android:text="余额"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/discount"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/discount_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/douban_red_80_percent"
+                            android:textSize="20sp"
+                            android:text="12"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/douban_red_80_percent"
+                            android:text="个"/>
+                    </LinearLayout>
+                    <TextView
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@+id/discount"
+                        android:text="优惠"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/gold"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/gold_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/douban_yellow_70_percent"
+                            android:textSize="20sp"
+                            android:text="72"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/douban_yellow_70_percent"
+                            android:text="个"/>
+                    </LinearLayout>
+                    <TextView
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@+id/gold"
+                        android:text="金币"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
             <RelativeLayout
+                android:layout_marginTop="20dp"
                 android:background="@color/white"
                 android:id="@+id/address"
                 android:layout_width="match_parent"

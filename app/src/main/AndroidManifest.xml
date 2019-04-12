@@ -25,23 +25,21 @@
         <!-- 启动页面（因为使用了LauncherTheme，所以不要给这个Activity设置screenOrientation属性，会导致崩溃） -->
         <activity
             android:name=".ui.activity.LauncherActivity"
-            android:theme="@style/LauncherTheme">
-
-
-        </activity>
+            android:theme="@style/LauncherTheme" />
 
         <!-- 主页界面 -->
         <activity
             android:name=".ui.activity.HomeActivity"
             android:alwaysRetainTaskState="true"
-            android:launchMode="singleTop" >
-        <!-- 程序入口 -->
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <action android:name="android.intent.action.VIEW" />
+            android:launchMode="singleTop">
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+            <!-- 程序入口 -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <!-- 登录界面 -->
@@ -76,6 +74,14 @@
         <!-- 对话框界面 -->
         <activity android:name=".ui.activity.DialogActivity" />
 
+        <!-- 充值界面 -->
+        <activity android:name=".ui.activity.RechargeActivity" />
+        <activity android:name=".ui.activity.MoneyActivity" />
+        <activity
+            android:name=".ui.activity.AddressActivity"
+            android:label="@string/title_activity_address"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ui.activity.AddAddressActivity"></activity>
     </application>
 
 </manifest>

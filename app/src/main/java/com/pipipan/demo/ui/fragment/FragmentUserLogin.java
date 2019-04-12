@@ -5,6 +5,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import com.pipipan.demo.R;
 import com.pipipan.demo.common.Constants;
 import com.pipipan.demo.common.MyLazyFragment;
 import com.pipipan.demo.helper.CommonUtil;
+import com.pipipan.demo.ui.activity.AddressActivity;
 import com.pipipan.demo.widget.XCollapsingToolbarLayout;
 
 import butterknife.BindView;
@@ -52,6 +54,10 @@ public class FragmentUserLogin extends MyLazyFragment
     TextView name;
     @BindView(R.id.phone)
     TextView phone;
+    @BindView(R.id.money)
+    LinearLayout money;
+    @BindView(R.id.money_counts)
+    TextView moneyCount;
 
     @Override
     protected int getLayoutId() {
@@ -85,12 +91,15 @@ public class FragmentUserLogin extends MyLazyFragment
                         });
             builder.show();
         }));
+        address.setOnClickListener((v -> startActivity(AddressActivity.class)));
+
     }
 
     @Override
     protected void initData() {
         name.setText(Constants.user.getName());
         phone.setText(Constants.user.getPhone());
+        moneyCount.setText(String.valueOf(Constants.user.getMoney()));
     }
 
     @Override

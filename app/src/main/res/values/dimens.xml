@@ -3,5 +3,6 @@
 
     <!-- 默认按钮的圆角大小 -->
     <dimen name="button_round_size">5dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 
 </resources>

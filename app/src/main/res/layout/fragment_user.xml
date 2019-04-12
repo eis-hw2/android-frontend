@@ -68,8 +68,74 @@ tools:context=".ui.fragment.FragmentUser">
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <LinearLayout
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="70dp">
+            <RelativeLayout
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/money"
+                    android:src="@mipmap/money"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
+                <TextView
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/money"
+                    android:text="余额"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/discount"
+                    android:src="@mipmap/discount"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
+                <TextView
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/discount"
+                    android:text="优惠"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/gold"
+                    android:src="@mipmap/gold"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
+                <TextView
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/gold"
+                    android:text="金币"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
 
     <RelativeLayout
+        android:layout_marginTop="20dp"
         android:background="@color/white"
         android:id="@+id/address"
         android:layout_width="match_parent"
