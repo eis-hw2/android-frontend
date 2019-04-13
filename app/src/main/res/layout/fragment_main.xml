@@ -17,7 +17,7 @@
         <com.pipipan.demo.widget.XCollapsingToolbarLayout
             android:id="@+id/ctl_test_bar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/space_512"
+            android:layout_height="100dp"
             app:contentScrim="@color/white"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:scrimVisibleHeightTrigger="@dimen/space_200">
@@ -25,9 +25,9 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="@dimen/space_300"
+                android:background="@color/douban_blue_80_percent"
+                android:paddingTop="100dp"
                 android:scaleType="centerCrop"
-                android:src="@mipmap/bg_launcher"
                 app:layout_collapseMode="parallax" />
 
             <android.support.v7.widget.Toolbar
@@ -50,29 +50,21 @@
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
                     android:padding="@dimen/space_20">
-
+                    <ImageView
+                        android:id="@+id/address_image"
+                        android:layout_gravity="center_vertical"
+                        android:src="@mipmap/address_white"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp" />
                     <TextView
                         android:id="@+id/tv_test_address"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/space_20"
                         android:gravity="center_vertical"
-                        android:text="地区"
+                        android:text="上海交通大学"
                         android:textColor="@color/white"
                         android:textSize="@dimen/font_size_30px" />
-
-                    <TextView
-                        android:id="@+id/tv_test_search"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="@dimen/space_40"
-                        android:layout_marginRight="@dimen/space_100"
-                        android:background="@drawable/bg_home_search_bar_transparent"
-                        android:gravity="center"
-                        android:text="请输入搜索关键字"
-                        android:textColor="#a4a4a4"
-                        android:textSize="@dimen/font_size_28px" />
-
                 </LinearLayout>
 
             </com.hjq.bar.TitleBar>
@@ -95,7 +87,12 @@
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/convenientBanner"
                 android:layout_width="match_parent"
-                android:layout_height="200dp" />
+                android:layout_height="140dp" />
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </android.support.v7.widget.RecyclerView>
 
 
         </LinearLayout>

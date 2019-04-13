@@ -248,4 +248,5 @@
     <!-- Group -->
     <color name="group_requests_background">#FFF7E4</color>
     <color name="group_requests_text">#F39700</color>
+    <color name="search_gray">#F4F4F4</color>
 </resources>

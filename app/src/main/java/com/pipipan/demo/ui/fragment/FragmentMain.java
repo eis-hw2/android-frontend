@@ -3,6 +3,7 @@ package com.pipipan.demo.ui.fragment;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gyf.barlibrary.ImmersionBar;
@@ -37,11 +38,10 @@ public class FragmentMain extends MyLazyFragment
     Toolbar mToolbar;
     @BindView(R.id.tb_test_a_bar)
     TitleBar mTitleBar;
-
+    @BindView(R.id.address_image)
+    ImageView addressImage;
     @BindView(R.id.tv_test_address)
     TextView mAddressView;
-    @BindView(R.id.tv_test_search)
-    TextView mSearchView;
     @BindView(R.id.convenientBanner)
     Banner banner;
 
@@ -97,11 +97,11 @@ public class FragmentMain extends MyLazyFragment
         // CollapsingToolbarLayout 发生了渐变
         if (shown) {
             mAddressView.setTextColor(getResources().getColor(R.color.black));
-            mSearchView.setBackgroundResource(R.drawable.bg_home_search_bar_gray);
+            addressImage.setImageResource(R.mipmap.address);
             getStatusBarConfig().statusBarDarkFont(true).init();
         }else {
             mAddressView.setTextColor(getResources().getColor(R.color.white));
-            mSearchView.setBackgroundResource(R.drawable.bg_home_search_bar_transparent);
+            addressImage.setImageResource(R.mipmap.address_white);
             getStatusBarConfig().statusBarDarkFont(false).init();
         }
     }
