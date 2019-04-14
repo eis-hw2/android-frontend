@@ -1,6 +1,7 @@
 package com.pipipan.demo.ui.fragment;
 
 import android.support.design.widget.AppBarLayout;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,6 +12,7 @@ import com.hjq.bar.TitleBar;
 import com.pipipan.demo.R;
 import com.pipipan.demo.common.MyLazyFragment;
 import com.pipipan.demo.helper.GlideImageLoader;
+import com.pipipan.demo.ui.adapter.StoreAdapter;
 import com.pipipan.demo.widget.XCollapsingToolbarLayout;
 import com.pipipan.image.ImageLoader;
 import com.youth.banner.Banner;
@@ -44,6 +46,10 @@ public class FragmentMain extends MyLazyFragment
     TextView mAddressView;
     @BindView(R.id.convenientBanner)
     Banner banner;
+    @BindView(R.id.stores)
+    RecyclerView recyclerView;
+
+    StoreAdapter storeAdapter;
 
     public static FragmentMain newInstance() {
         return new FragmentMain();
@@ -76,6 +82,8 @@ public class FragmentMain extends MyLazyFragment
         banner.setImages(images);
         //banner设置方法全部调用完毕时最后调用
         banner.start();
+        storeAdapter = new StoreAdapter(getContext(), new ArrayList<>());
+        recyclerView.setAdapter(storeAdapter);
     }
 
     @Override

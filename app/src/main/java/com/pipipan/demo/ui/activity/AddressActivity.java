@@ -1,21 +1,14 @@
 package com.pipipan.demo.ui.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.TextView;
 
 import com.hjq.bar.TitleBar;
 import com.pipipan.demo.R;
-import com.pipipan.demo.adapter.AddressAdapter;
+import com.pipipan.demo.ui.adapter.AddressAdapter;
 import com.pipipan.demo.common.MyActivity;
-import com.pipipan.demo.common.MyRecyclerViewAdapter;
 import com.pipipan.demo.domain.Address;
 
 import java.util.ArrayList;

@@ -7,7 +7,7 @@ import com.pipipan.demo.common.MyLazyFragment;
 import com.pipipan.demo.ui.fragment.FragmentMain;
 import com.pipipan.demo.ui.fragment.FragmentUser;
 import com.pipipan.demo.ui.fragment.TestFragmentB;
-import com.pipipan.demo.ui.fragment.TestFragmentC;
+import com.pipipan.demo.ui.fragment.FragmentOrder;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class MyAdapter extends BaseFragmentAdapter<MyLazyFragment> {
     protected void init(FragmentManager manager, List<MyLazyFragment> list) {
         list.add(FragmentMain.newInstance());
         list.add(TestFragmentB.newInstance());
-        list.add(TestFragmentC.newInstance());
+        list.add(FragmentOrder.newInstance());
         list.add(FragmentUser.getInstance());
     }
 

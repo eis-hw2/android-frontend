@@ -1,4 +1,4 @@
-package com.pipipan.demo.adapter;
+package com.pipipan.demo.ui.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

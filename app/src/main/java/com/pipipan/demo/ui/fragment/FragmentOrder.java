@@ -22,18 +22,18 @@ import butterknife.OnClick;
  *    time   : 2018/10/18
  *    desc   : 项目框架使用示例
  */
-public class TestFragmentC extends MyLazyFragment {
+public class FragmentOrder extends MyLazyFragment {
 
     @BindView(R.id.iv_test_image)
     ImageView mImageView;
 
-    public static TestFragmentC newInstance() {
-        return new TestFragmentC();
+    public static FragmentOrder newInstance() {
+        return new FragmentOrder();
     }
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_test_c;
+        return R.layout.fragment_order;
     }
 
     @Override
