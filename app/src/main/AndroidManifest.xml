@@ -81,7 +81,8 @@
             android:name=".ui.activity.AddressActivity"
             android:label="@string/title_activity_address"
             android:theme="@style/AppTheme" />
-        <activity android:name=".ui.activity.AddAddressActivity"></activity>
+        <activity android:name=".ui.activity.AddAddressActivity" />
+        <activity android:name=".ui.activity.GoodActivity"></activity>
     </application>
 
 </manifest>

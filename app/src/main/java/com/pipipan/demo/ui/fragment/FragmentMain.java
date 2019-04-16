@@ -11,6 +11,7 @@ import com.gyf.barlibrary.ImmersionBar;
 import com.hjq.bar.TitleBar;
 import com.pipipan.demo.R;
 import com.pipipan.demo.common.MyLazyFragment;
+import com.pipipan.demo.domain.Store;
 import com.pipipan.demo.helper.GlideImageLoader;
 import com.pipipan.demo.ui.adapter.StoreAdapter;
 import com.pipipan.demo.widget.XCollapsingToolbarLayout;
@@ -82,8 +83,16 @@ public class FragmentMain extends MyLazyFragment
         banner.setImages(images);
         //banner设置方法全部调用完毕时最后调用
         banner.start();
-        storeAdapter = new StoreAdapter(getContext(), new ArrayList<>());
+        storeAdapter = new StoreAdapter(getContext(), getStoreList());
         recyclerView.setAdapter(storeAdapter);
+    }
+
+    private List<Store> getStoreList() {
+        List<Store> stores = new ArrayList<>();
+        for (int i=0; i<30; ++i)
+            stores.add(new Store());
+        return stores;
+
     }
 
     @Override
@@ -116,8 +125,8 @@ public class FragmentMain extends MyLazyFragment
 
     private void loadTestDatas() {
         //图片可能过期哦，自己换来测试吧
-        images.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525319864&di=87f476652c96678547ccabbf112076be&imgtype=jpg&er=1&src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fgamephotolib%2F1410%2F27%2Fc0%2F40170771_1414341013392.jpg");
-        images.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524714908870&di=9d43d35cefbabacdc879733aa7ddc82b&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dshijue1%252C0%252C0%252C294%252C40%2Fsign%3D46de93bfc711728b24208461a095a9bb%2F4610b912c8fcc3ce5423d51d9845d688d43f2038.jpg");
-        images.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524714935901&di=052557513540f3d740eeeb2439c585bb&imgtype=0&src=http%3A%2F%2Fwww.gzlco.com%2Fimggzl%2F214%2F1b6e6520ca474fe4bd3ff728817950717651.jpeg");
+        images.add("http://image.tupian114.com/20181120/12097358.jpg");
+        images.add("https://png.pngtree.com/png-clipart/20190116/ourlarge/pngtree-food-delicious-food-and-drink-a-bowl-of-rice-png-image_395602.jpg");
+        images.add("http://bpic.588ku.com/element_origin_min_pic/19/03/07/26beb9fd1569c15e3da4f5b05bc5b77f.jpg");
     }
 }
