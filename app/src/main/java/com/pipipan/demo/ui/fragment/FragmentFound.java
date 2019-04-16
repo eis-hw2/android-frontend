@@ -16,7 +16,7 @@ import butterknife.OnClick;
  *    time   : 2018/10/18
  *    desc   : 项目自定义控件展示
  */
-public class TestFragmentB extends MyLazyFragment
+public class FragmentFound extends MyLazyFragment
         implements SwitchButton.OnCheckedChangeListener {
 
     @BindView(R.id.sb_test_switch)
@@ -25,13 +25,13 @@ public class TestFragmentB extends MyLazyFragment
     @BindView(R.id.cv_test_countdown)
     CountdownView mCountdownView;
 
-    public static TestFragmentB newInstance() {
-        return new TestFragmentB();
+    public static FragmentFound newInstance() {
+        return new FragmentFound();
     }
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_test_b;
+        return R.layout.fragment_order;
     }
 
     @Override
