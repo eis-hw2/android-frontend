@@ -83,6 +83,7 @@ public class GoodActivity extends MyActivity
             }
         });
         scrollView.setFillViewport(true);
+        getWindow().setStatusBarColor(getResources().getColor(R.color.douban_blue_80_percent));
     }
 
     private void initViewPager() {

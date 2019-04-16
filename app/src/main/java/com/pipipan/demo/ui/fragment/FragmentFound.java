@@ -31,7 +31,7 @@ public class FragmentFound extends MyLazyFragment
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_order;
+        return R.layout.fragment_found;
     }
 
     @Override
