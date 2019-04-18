@@ -28,7 +28,32 @@
     <android.support.v7.widget.RecyclerView
         android:layout_below="@id/text"
         android:id="@+id/goods"
+        android:layout_marginBottom="50dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </android.support.v7.widget.RecyclerView>
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="50dp">
+        <TextView
+            android:id="@+id/totalPrice"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:layout_weight="7"
+            android:textColor="@color/douban_gray_28_percent"
+            android:text="未选购商品"
+            android:background="@color/douban_gray"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/checkout"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:text="￥15起送"
+            android:textColor="@color/douban_gray_28_percent"
+            android:background="@color/douban_gray_55_percent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 </RelativeLayout>

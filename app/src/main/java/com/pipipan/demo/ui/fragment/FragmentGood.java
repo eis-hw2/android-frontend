@@ -48,12 +48,14 @@ public class FragmentGood extends MyLazyFragment {
     @Override
     protected void initData() {
         goodAdapter = new GoodAdapter(getContext(), getGoodList());
-
+        goods.setAdapter(goodAdapter);
     }
 
     private List<Good> getGoodList() {
         List<Good> goods = new ArrayList<>();
-        goods.add(new Good());
+        for (int i=0; i<10; ++i){
+            goods.add(new Good());
+        }
         return goods;
     }
 }
