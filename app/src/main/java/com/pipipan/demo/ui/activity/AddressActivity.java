@@ -6,12 +6,12 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.hjq.bar.TitleBar;
 import com.pipipan.demo.R;
+import com.pipipan.demo.domain.Address;
+import com.pipipan.demo.domain.RecipientAddress;
 import com.pipipan.demo.ui.adapter.AddressAdapter;
 import com.pipipan.demo.common.MyActivity;
-import com.pipipan.demo.domain.Address;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,23 +51,24 @@ public class AddressActivity extends MyActivity{
         recyclerView.setAdapter(addressAdapter);
     }
 
-    private List<Address> getAddresses() {
+    private List<RecipientAddress> getAddresses() {
         //TODO 调用API得到地址信息
-        List<Address> addresses = new ArrayList<>();
-        Address address = new Address();
-        address.setAddressLocation("上海交通大学西11宿舍");
-        address.setDetailLocation("4楼 414寝室");
-        address.setReceiptName("皮皮潘");
-        address.setReceiptPhone("18317126628");
-        addresses.add(address);
-        return addresses;
+        List<RecipientAddress> recipientAddresses = new ArrayList<>();
+        RecipientAddress recipientAddress = new RecipientAddress();
+        Address address = new Address("上海交通大学西11宿舍", 0.0, 0.0);
+        recipientAddress.setAddress(address);
+        recipientAddress.setDetailLocation("4楼 414寝室");
+        recipientAddress.setRecipient("皮皮潘");
+        recipientAddress.setPhone("18317126628");
+        recipientAddresses.add(recipientAddress);
+        return recipientAddresses;
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == 1){
             Gson gson = new Gson();
-            addressAdapter.addItem(0, gson.fromJson(data.getStringExtra("address"), Address.class));
+            addressAdapter.addItem(0, gson.fromJson(data.getStringExtra("recipientAddress"), RecipientAddress.class));
         }
     }
 }

@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -25,11 +26,12 @@ import com.baidu.mapapi.search.sug.SuggestionSearch
 import com.baidu.mapapi.search.sug.SuggestionSearchOption
 import com.pipipan.demo.R
 import kotlinx.android.synthetic.main.activity_select_address_by_map.*
+import kotlinx.android.synthetic.main.fragment_user.*
 import java.util.*
 import kotlin.collections.ArrayList
 
 class SelectAddressByMapActivity : AppCompatActivity() {
-
+    private val TAG = "SelectAddressActivity"
     private val REQUEST_CODE_CITY = 999
     private lateinit var mLocClient: LocationClient
     private lateinit var geoCoder: GeoCoder
@@ -123,6 +125,8 @@ class SelectAddressByMapActivity : AppCompatActivity() {
             val poiInfo = mPoiInfoList[position]
             val intent = Intent()
             intent.putExtra("address", poiInfo.name)
+            intent.putExtra("latitude", poiInfo.location.latitude)
+            intent.putExtra("longitude", poiInfo.location.longitude)
             setResult(RESULT_OK, intent)
             finish()
         }

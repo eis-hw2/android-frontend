@@ -3,14 +3,11 @@ package com.pipipan.demo.ui.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.pipipan.base.BaseFragmentAdapter;
 import com.pipipan.demo.R;
-import com.pipipan.demo.common.MyLazyFragment;
 import com.pipipan.demo.common.MyRecyclerViewAdapter;
 import com.pipipan.demo.domain.Store;
 import com.pipipan.demo.ui.activity.GoodActivity;
@@ -26,7 +23,7 @@ public class StoreAdapter extends MyRecyclerViewAdapter<Store, StoreAdapter.Stor
     @NonNull
     @Override
     public StoreViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.store_viewholder, viewGroup, false);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.viewholder_store, viewGroup, false);
         return new StoreViewHolder(view);
     }
 

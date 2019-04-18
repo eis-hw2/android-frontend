@@ -109,7 +109,7 @@ public class HomeActivity extends MyActivity
     private void prepareUserInformation() {
         //TODO 拉取用户信息并存入Constants.user
         User user = new User();
-        user.setName(Constants.user_id);
+        user.setUsername(Constants.user_id);
         user.setPhone("18317126628");
         user.setMoney(100);
         Constants.user = user;

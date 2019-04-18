@@ -97,7 +97,7 @@ public class FragmentUserLogin extends MyLazyFragment
 
     @Override
     protected void initData() {
-        name.setText(Constants.user.getName());
+        name.setText(Constants.user.getUsername());
         phone.setText(Constants.user.getPhone());
         moneyCount.setText(String.valueOf(Constants.user.getMoney()));
     }

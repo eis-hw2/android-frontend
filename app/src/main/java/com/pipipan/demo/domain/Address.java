@@ -1,40 +1,37 @@
 package com.pipipan.demo.domain;
 
 public class Address {
-    String addressLocation;
-    String detailLocation;
-    String receiptName;
-    String receiptPhone;
+    String addressLocationName;
+    Double longitude;
+    Double latitude;
 
-    public String getAddressLocation() {
-        return addressLocation;
+    public Address(String addressLocationName, Double longitude, Double latitude) {
+        this.addressLocationName = addressLocationName;
+        this.longitude = longitude;
+        this.latitude = latitude;
     }
 
-    public void setAddressLocation(String addressLocation) {
-        this.addressLocation = addressLocation;
+    public String getAddressLocationName() {
+        return addressLocationName;
     }
 
-    public String getDetailLocation() {
-        return detailLocation;
+    public void setAddressLocationName(String addressLocationName) {
+        this.addressLocationName = addressLocationName;
     }
 
-    public void setDetailLocation(String detailLocation) {
-        this.detailLocation = detailLocation;
+    public Double getLongitude() {
+        return longitude;
     }
 
-    public String getReceiptName() {
-        return receiptName;
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 
-    public void setReceiptName(String receiptName) {
-        this.receiptName = receiptName;
+    public Double getLatitude() {
+        return latitude;
     }
 
-    public String getReceiptPhone() {
-        return receiptPhone;
-    }
-
-    public void setReceiptPhone(String receiptPhone) {
-        this.receiptPhone = receiptPhone;
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
     }
 }
