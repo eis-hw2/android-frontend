@@ -24,14 +24,15 @@ import com.baidu.mapapi.search.geocode.*
 import com.baidu.mapapi.search.sug.SuggestionResult
 import com.baidu.mapapi.search.sug.SuggestionSearch
 import com.baidu.mapapi.search.sug.SuggestionSearchOption
+import com.google.gson.Gson
 import com.pipipan.demo.R
+import com.pipipan.demo.domain.Address
 import kotlinx.android.synthetic.main.activity_select_address_by_map.*
 import kotlinx.android.synthetic.main.fragment_user.*
 import java.util.*
 import kotlin.collections.ArrayList
 
 class SelectAddressByMapActivity : AppCompatActivity() {
-    private val TAG = "SelectAddressActivity"
     private val REQUEST_CODE_CITY = 999
     private lateinit var mLocClient: LocationClient
     private lateinit var geoCoder: GeoCoder
@@ -124,9 +125,9 @@ class SelectAddressByMapActivity : AppCompatActivity() {
         mLvResult.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
             val poiInfo = mPoiInfoList[position]
             val intent = Intent()
-            intent.putExtra("address", poiInfo.name)
-            intent.putExtra("latitude", poiInfo.location.latitude)
-            intent.putExtra("longitude", poiInfo.location.longitude)
+            val address = Address(poiInfo.name, poiInfo.location.longitude, poiInfo.location.latitude)
+            val gson = Gson()
+            intent.putExtra("address", gson.toJson(address))
             setResult(RESULT_OK, intent)
             finish()
         }

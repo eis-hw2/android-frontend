@@ -4,6 +4,11 @@ import android.support.v7.widget.RecyclerView;
 
 import com.pipipan.demo.R;
 import com.pipipan.demo.common.MyLazyFragment;
+import com.pipipan.demo.domain.Good;
+import com.pipipan.demo.ui.adapter.GoodAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -23,6 +28,8 @@ public class FragmentGood extends MyLazyFragment {
     @BindView(R.id.goods)
     RecyclerView goods;
 
+    GoodAdapter goodAdapter;
+
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_good;
@@ -40,6 +47,13 @@ public class FragmentGood extends MyLazyFragment {
 
     @Override
     protected void initData() {
+        goodAdapter = new GoodAdapter(getContext(), getGoodList());
 
+    }
+
+    private List<Good> getGoodList() {
+        List<Good> goods = new ArrayList<>();
+        goods.add(new Good());
+        return goods;
     }
 }

@@ -29,8 +29,8 @@ public class AddAddressActivity extends MyActivity {
     @BindView(R.id.submit)
     Button submit;
 
-    Double longitude = 0.0;
-    Double latitude = 0.0;
+    Address locationAddress;
+    Gson gson = new Gson();
 
     @Override
     protected int getLayoutId() {
@@ -47,10 +47,9 @@ public class AddAddressActivity extends MyActivity {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode){
             case 1:
-                address.setText(data.getStringExtra("address"));
-                longitude = data.getDoubleExtra("longitude", -1);
-                latitude = data.getDoubleExtra("latitude", -1);
-                Log.d(TAG, "onActivityResult: longitude " + data.getDoubleExtra("longitude", -1));
+                locationAddress = gson.fromJson(data.getStringExtra("address"), Address.class);
+                address.setText(locationAddress.getAddressLocationName());
+                Log.d(TAG, "onActivityResult: longitude " + locationAddress.getLongitude());
         }
     }
 
@@ -61,20 +60,22 @@ public class AddAddressActivity extends MyActivity {
             startActivityForResult(intent, 1);
         }));
         submit.setOnClickListener((v -> { ;
-            Gson gson = new Gson();
-            RecipientAddress recipientAddress = new RecipientAddress();
-            recipientAddress.setRecipient(name.getText().toString());
-            Address address = new Address(this.address.getText().toString(), longitude, latitude);
-            recipientAddress.setAddress(address);
-            recipientAddress.setPhone(phone.getText().toString());
-            recipientAddress.setDetailLocation(detail_address.getText().toString());
             Intent intent = new Intent();
-            intent.putExtra("recipientAddress", gson.toJson(recipientAddress));
+            intent.putExtra("recipientAddress", gson.toJson(buildRecipientAddress()));
             //TODO 发送请求进行保存
-            Log.d(TAG, "initView: recipientAddress" + gson.toJson(recipientAddress));
+            Log.d(TAG, "initView: recipientAddress" + gson.toJson(buildRecipientAddress()));
             setResult(1, intent);
             finish();
         }));
+    }
+
+    private RecipientAddress buildRecipientAddress(){
+        RecipientAddress recipientAddress = new RecipientAddress();
+        recipientAddress.setRecipient(name.getText().toString());
+        recipientAddress.setAddress(locationAddress);
+        recipientAddress.setPhone(phone.getText().toString());
+        recipientAddress.setDetailLocation(detail_address.getText().toString());
+        return recipientAddress;
     }
 
     @Override
