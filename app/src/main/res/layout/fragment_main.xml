@@ -30,6 +30,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="5dp"
+                    android:cursorVisible="false"
                     android:layout_gravity="bottom"
                     android:gravity="center"
                     android:textColor="@color/black"

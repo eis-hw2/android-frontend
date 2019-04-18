@@ -67,4 +67,8 @@
     <string name="about_copyright">Copyright © 2018</string>
     <string name="title_activity_address">AddressActivity</string>
 
+    <string name="name_hint"><font size="13">姓名</font></string>
+    <string name="phone_hint"><font size="13">手机号码</font></string>
+    <string name="address_hint"><font size="13">例： 5号楼203室</font></string>
+
 </resources>

@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -147,17 +149,19 @@ dependencies {
     // 第三方支付：https://github.com/getActivity/RxPay
     // Log 打印：https://github.com/JakeWharton/timber
     // oss
-    implementation ('com.aliyun.dpa:oss-android-sdk:+'){
-        exclude (module: 'alicloud-android-utdid')
+    implementation('com.aliyun.dpa:oss-android-sdk:+') {
+        exclude(module: 'alicloud-android-utdid')
     }
     // retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.0.2'
     implementation 'com.squareup.retrofit2:converter-scalars:2.0.2'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 repositories {
     flatDir {
         dirs 'libs' //就是你放aar的目录地址
     }
+    mavenCentral()
 }

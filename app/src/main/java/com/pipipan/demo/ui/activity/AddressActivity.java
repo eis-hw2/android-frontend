@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.hjq.bar.TitleBar;
 import com.pipipan.demo.R;
 import com.pipipan.demo.ui.adapter.AddressAdapter;
@@ -58,13 +60,14 @@ public class AddressActivity extends MyActivity{
         address.setReceiptName("皮皮潘");
         address.setReceiptPhone("18317126628");
         addresses.add(address);
-        addresses.add(address);
         return addresses;
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (requestCode == 1)
-        addressAdapter.addData(getAddresses());
+        if (requestCode == 1){
+            Gson gson = new Gson();
+            addressAdapter.addItem(0, gson.fromJson(data.getStringExtra("address"), Address.class));
+        }
     }
 }

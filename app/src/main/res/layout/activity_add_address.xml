@@ -1,9 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.AddAddressActivity">
+    tools:context=".ui.activity.AddressActivity">
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/abl_test_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:elevation="0dp">
 
-</android.support.constraint.ConstraintLayout>
+        <com.hjq.bar.TitleBar
+            android:background="@color/douban_blue_80_percent"
+            android:id="@+id/titlebar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:backButton="false"
+            app:barStyle="transparent"
+            app:titleColor="@color/white"
+            app:title="新增地址"
+            app:titleSize="16sp"
+            app:layout_collapseMode="pin">
+        </com.hjq.bar.TitleBar>
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_address_add" />
+
+</android.support.design.widget.CoordinatorLayout>

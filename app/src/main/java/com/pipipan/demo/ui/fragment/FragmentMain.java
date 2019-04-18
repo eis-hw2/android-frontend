@@ -1,5 +1,7 @@
 package com.pipipan.demo.ui.fragment;
 
+import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -13,6 +15,7 @@ import com.pipipan.demo.R;
 import com.pipipan.demo.common.MyLazyFragment;
 import com.pipipan.demo.domain.Store;
 import com.pipipan.demo.helper.GlideImageLoader;
+import com.pipipan.demo.ui.activity.SelectAddressByMapActivity;
 import com.pipipan.demo.ui.adapter.StoreAdapter;
 import com.pipipan.demo.widget.XCollapsingToolbarLayout;
 import com.pipipan.image.ImageLoader;
@@ -85,6 +88,10 @@ public class FragmentMain extends MyLazyFragment
         banner.start();
         storeAdapter = new StoreAdapter(getContext(), getStoreList());
         recyclerView.setAdapter(storeAdapter);
+        mAddressView.setOnClickListener((v -> {
+            Intent intent = new Intent(getContext(), SelectAddressByMapActivity.class);
+            startActivityForResult(intent, 1);
+        }));
     }
 
     private List<Store> getStoreList() {
@@ -128,5 +135,14 @@ public class FragmentMain extends MyLazyFragment
         images.add("http://image.tupian114.com/20181120/12097358.jpg");
         images.add("https://png.pngtree.com/png-clipart/20190116/ourlarge/pngtree-food-delicious-food-and-drink-a-bowl-of-rice-png-image_395602.jpg");
         images.add("http://bpic.588ku.com/element_origin_min_pic/19/03/07/26beb9fd1569c15e3da4f5b05bc5b77f.jpg");
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case 1:
+                mAddressView.setText(data.getStringExtra("address"));
+        }
     }
 }

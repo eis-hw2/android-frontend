@@ -50,6 +50,7 @@ tools:context=".ui.activity.GoodActivity">
                 android:layout_gravity="bottom"
                 android:gravity="center"
                 android:textColor="@color/black"
+                android:cursorVisible="false"
                 android:hint="请输入商品名称"
                 android:textColorHint="@color/gray"
                 android:background="@color/white"
