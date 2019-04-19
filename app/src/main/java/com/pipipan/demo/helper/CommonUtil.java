@@ -3,6 +3,8 @@ package com.pipipan.demo.helper;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.google.gson.Gson;
+
 public class CommonUtil {
     public static void saveSharedPreference(Context context, String key, String value){
         SharedPreferences sharedPreferences = context.getSharedPreferences("project", Context.MODE_PRIVATE);
@@ -15,4 +17,6 @@ public class CommonUtil {
         SharedPreferences sharedPreferences = context.getSharedPreferences("project", Context.MODE_PRIVATE);
         return sharedPreferences.getString(key, "");
     }
+
+    public static Gson gson = new Gson();
 }

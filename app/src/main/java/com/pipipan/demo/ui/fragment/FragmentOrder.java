@@ -7,6 +7,8 @@ import android.widget.ImageView;
 import com.pipipan.demo.R;
 import com.pipipan.demo.common.MyLazyFragment;
 import com.pipipan.demo.common.UIActivity;
+import com.pipipan.demo.domain.Order;
+import com.pipipan.demo.ui.adapter.OrderAdapter;
 import com.pipipan.image.ImageLoader;
 import com.hjq.permissions.OnPermission;
 import com.hjq.permissions.Permission;
@@ -19,6 +21,7 @@ import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -35,6 +38,8 @@ public class FragmentOrder extends MyLazyFragment {
     SmartRefreshLayout refreshLayout;
     @BindView(R.id.orders)
     RecyclerView orders;
+
+    OrderAdapter orderAdapter;
 
     public static FragmentOrder newInstance() {
         return new FragmentOrder();
@@ -57,7 +62,16 @@ public class FragmentOrder extends MyLazyFragment {
 
     @Override
     protected void initData() {
+        orderAdapter = new OrderAdapter(getContext(), initializeData());
+        orders.setAdapter(orderAdapter);
+    }
 
+    private List<Order> initializeData() {
+        List<Order> res = new ArrayList<>();
+        for (int i=0; i<10; ++i){
+            res.add(new Order());
+        }
+        return res;
     }
 
     private void initRefreshLayout() {

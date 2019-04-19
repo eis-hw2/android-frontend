@@ -1,15 +1,27 @@
 package com.pipipan.demo.domain;
 
+import com.pipipan.demo.common.Constants;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
+    public static Order createOrder() {
+        Order order = new Order();
+        order.setBuyer(Constants.user);
+        order.setStore(Constants.store);
+        order.setGoods(new ArrayList<>());
+        order.setStatus(Status.WAITING);
+        return order;
+    }
+
     public enum Status {
         WAITING, BUYING, SENDING, TO_BE_CHECKED, EXPIRED, COMPLETED;
     }
     private long id;
     private User buyer;
     private User proxy;
-    private Address address;
+    private Recipient recipient;
     private List<Good> goods;
     private double goodsprice;
     private double proxyprice;
@@ -42,12 +54,12 @@ public class Order {
         this.proxy = proxy;
     }
 
-    public Address getAddress() {
-        return address;
+    public Recipient getRecipient() {
+        return recipient;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setRecipient(Recipient recipient) {
+        this.recipient = recipient;
     }
 
     public List<Good> getGoods() {

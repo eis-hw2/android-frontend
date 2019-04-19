@@ -68,7 +68,7 @@ public class AddressActivity extends MyActivity{
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == 1){
             Gson gson = new Gson();
-            String address = data.getStringExtra("address");
+            String address = data.getStringExtra("recipientAddress");
             if (!(address == null ))
                 addressAdapter.addItem(0, gson.fromJson(data.getStringExtra("recipientAddress"), Recipient.class));
         }

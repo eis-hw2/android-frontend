@@ -27,6 +27,7 @@ import com.baidu.mapapi.search.sug.SuggestionSearchOption
 import com.google.gson.Gson
 import com.pipipan.demo.R
 import com.pipipan.demo.domain.Address
+import com.pipipan.demo.helper.CommonUtil
 import kotlinx.android.synthetic.main.activity_select_address_by_map.*
 import kotlinx.android.synthetic.main.fragment_user.*
 import java.util.*
@@ -126,8 +127,7 @@ class SelectAddressByMapActivity : AppCompatActivity() {
             val poiInfo = mPoiInfoList[position]
             val intent = Intent()
             val address = Address(poiInfo.name, poiInfo.location.longitude, poiInfo.location.latitude)
-            val gson = Gson()
-            intent.putExtra("address", gson.toJson(address))
+            intent.putExtra("address", CommonUtil.gson.toJson(address))
             setResult(RESULT_OK, intent)
             finish()
         }

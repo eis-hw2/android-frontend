@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     android:orientation="vertical"
+    android:background="@color/white80"
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <LinearLayout
@@ -15,6 +16,82 @@
             android:src="@mipmap/avator"
             android:layout_width="60dp"
             android:layout_height="60dp" />
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/storeName"
+                    android:text="老妈烫饭"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/storeName"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/ic_arrow_right"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp" />
+                <TextView
+                    android:id="@+id/status"
+                    android:layout_alignParentRight="true"
+                    android:text="订单已送达"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/good"
+                    android:text="荷包蛋"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/money"
+                    android:layout_alignParentRight="true"
+                    android:textStyle="bold"
+                    android:text="￥12.8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_alignParentRight="true"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:id="@+id/similiar"
+                        android:text = "相似商家"
+                        android:textSize="10sp"
+                        android:textColor="@color/douban_blue_80_percent"
+                        android:background="@drawable/shape_button"
+                        android:layout_width="50dp"
+                        android:layout_height="30dp" />
+                    <Button
+                        android:layout_marginLeft="20dp"
+                        android:text = "再来一单"
+                        android:textSize="10sp"
+                        android:textColor="@color/douban_blue_80_percent"
+                        android:background="@drawable/shape_button"
+                        android:layout_width="50dp"
+                        android:layout_height="30dp" />
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
 
     </LinearLayout>
     <TextView

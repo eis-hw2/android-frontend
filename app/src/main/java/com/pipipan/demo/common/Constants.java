@@ -1,10 +1,12 @@
 package com.pipipan.demo.common;
 
+import com.pipipan.demo.domain.Store;
 import com.pipipan.demo.domain.User;
 
 public class Constants {
     public static String user_id = "";
     public static User user;
+    public static Store store;
     public static String BaiduMapKey = "vkX9wsQivFUOSALFZLX2ozLzlt8EBGzp";
     //OSS
     public static final String OSS_AccessKeyId = "LTAIqMIT5KX4oGAT";

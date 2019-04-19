@@ -8,7 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.pipipan.demo.R;
+import com.pipipan.demo.common.Constants;
 import com.pipipan.demo.common.MyRecyclerViewAdapter;
+import com.pipipan.demo.domain.Good;
 import com.pipipan.demo.domain.Store;
 import com.pipipan.demo.ui.activity.GoodActivity;
 
@@ -32,9 +34,8 @@ public class StoreAdapter extends MyRecyclerViewAdapter<Store, StoreAdapter.Stor
         Store store = getItem(i);
         //TODO 完成对应的信息提取
         storeViewHolder.view.setOnClickListener((v -> {
-            Intent intent = new Intent();
-            intent.setClass(getContext(), GoodActivity.class);
-            intent.putExtra(GoodActivity.STOREID, String.valueOf(i));
+            Constants.store = store;
+            Intent intent = new Intent(getContext(), GoodActivity.class);
             getContext().startActivity(intent);
         }));
     }

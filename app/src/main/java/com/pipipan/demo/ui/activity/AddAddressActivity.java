@@ -15,6 +15,8 @@ import com.pipipan.demo.domain.Recipient;
 
 import butterknife.BindView;
 
+import static com.pipipan.demo.helper.CommonUtil.gson;
+
 public class AddAddressActivity extends MyActivity {
     private static final String TAG = "AddAddressActivity";
     @BindView(R.id.name)
@@ -29,7 +31,6 @@ public class AddAddressActivity extends MyActivity {
     Button submit;
 
     Address locationAddress;
-    Gson gson = new Gson();
 
     @Override
     protected int getLayoutId() {
