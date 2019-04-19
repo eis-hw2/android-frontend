@@ -1,63 +1,79 @@
 package com.pipipan.demo.ui.fragment;
 
-import android.view.View;
+import android.support.v7.widget.RecyclerView;
 
 import com.pipipan.demo.R;
 import com.pipipan.demo.common.MyLazyFragment;
-import com.pipipan.widget.CountdownView;
-import com.pipipan.widget.SwitchButton;
+import com.pipipan.demo.domain.Order;
+import com.pipipan.demo.ui.adapter.OrderAdapter;
+import com.scwang.smartrefresh.header.DeliveryHeader;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
-/**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/AndroidProject
- *    time   : 2018/10/18
- *    desc   : 项目自定义控件展示
- */
-public class FragmentFound extends MyLazyFragment
-        implements SwitchButton.OnCheckedChangeListener {
+public class FragmentFound extends MyLazyFragment {
+    @BindView(R.id.refreshLayout)
+    SmartRefreshLayout refreshLayout;
+    @BindView(R.id.orders)
+    RecyclerView orders;
 
-    @BindView(R.id.sb_test_switch)
-    SwitchButton mSwitchButton;
+    OrderAdapter orderAdapter;
 
-    @BindView(R.id.cv_test_countdown)
-    CountdownView mCountdownView;
-
-    public static FragmentFound newInstance() {
-        return new FragmentFound();
+    public static FragmentOrder newInstance() {
+        return new FragmentOrder();
     }
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_found;
+        return R.layout.fragment_order;
     }
 
     @Override
     protected int getTitleBarId() {
-        return R.id.tb_test_b_title;
+        return R.id.tb_test_c_title;
     }
 
     @Override
     protected void initView() {
-        mSwitchButton.setOnCheckedChangeListener(this);
+        initRefreshLayout();
     }
 
     @Override
     protected void initData() {
-
+        orderAdapter = new OrderAdapter(getContext(), initializeData());
+        orders.setAdapter(orderAdapter);
     }
 
-    @OnClick(R.id.cv_test_countdown)
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.cv_test_countdown:
-                toast(getResources().getString(R.string.countdown_code_send_succeed));
-                break;
-            default:
-                break;
+    private List<Order> initializeData() {
+        //TODO 自己附近待接收的订单
+        List<Order> res = new ArrayList<>();
+        for (int i=0; i<10; ++i){
+            res.add(new Order());
         }
+        return res;
+    }
+
+    private void initRefreshLayout() {
+        refreshLayout.setRefreshHeader(new DeliveryHeader(getContext()));
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                //refreshlayout.finishRefresh(true);//传入false表示刷新失败
+                refreshlayout.finishLoadMore(500);//传入false表示加载失败
+            }
+        });
+        refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(RefreshLayout refreshlayout) {
+                refreshlayout.finishLoadMore(500);//传入false表示加载失败
+            }
+        });
     }
 
     @Override
@@ -66,12 +82,4 @@ public class FragmentFound extends MyLazyFragment
         return !super.isStatusBarEnabled();
     }
 
-    /**
-     * {@link SwitchButton.OnCheckedChangeListener}
-     */
-
-    @Override
-    public void onCheckedChanged(SwitchButton button, boolean isChecked) {
-        toast(isChecked);
-    }
 }

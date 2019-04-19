@@ -2,6 +2,7 @@ package com.pipipan.demo.ui.fragment;
 
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.pipipan.demo.R;
 import com.pipipan.demo.common.MyLazyFragment;
@@ -31,6 +32,10 @@ public class FragmentGood extends MyLazyFragment {
 
     @BindView(R.id.goods)
     RecyclerView goods;
+    @BindView(R.id.totalPrice)
+    TextView totalPrice;
+    @BindView(R.id.checkout)
+    TextView checkout;
 
     GoodAdapter goodAdapter;
     Order order;
@@ -47,7 +52,7 @@ public class FragmentGood extends MyLazyFragment {
 
     @Override
     protected void initView() {
-
+        checkout.setEnabled(false);
     }
 
     @Override
@@ -57,15 +62,40 @@ public class FragmentGood extends MyLazyFragment {
         goodAdapter.setOrderListener(goodAdapter.new OrderListener(){
             @Override
             public void onGoodItemAdd(Good good) {
-                order.getGoods().add(good);
+                List<Good> goods = order.getGoods();
+                goods.add(good);
                 order.setGoodsprice(order.getGoodsprice() + good.getPrice());
+                StringBuilder sb = new StringBuilder("");
+                sb.append("商品总价 ");
+                sb.append("￥");
+                sb.append(order.getGoodsprice());
+                totalPrice.setText(sb.toString());
+                if (order.getGoodsprice() >= 15){
+                    checkout.setBackgroundColor(getResources().getColor(R.color.light_green));
+                    checkout.setText("去结算");
+                    checkout.setTextColor(getResources().getColor(R.color.white80));
+                    checkout.setEnabled(true);
+                }
                 Log.e(TAG, "onGoodItemAdd: " + CommonUtil.gson.toJson(order));
             }
 
             @Override
             public void onGoodItemMinus(Good good) {
-                order.getGoods().remove(good);
+                List<Good> goods = order.getGoods();
+                goods.remove(good);
                 order.setGoodsprice(order.getGoodsprice() - good.getPrice());
+                StringBuilder sb = new StringBuilder("");
+                sb.append("￥");
+                sb.append(order.getGoodsprice());
+                totalPrice.setText(sb.toString());
+                if (order.getGoodsprice() < 15){
+                    checkout.setBackgroundColor(getResources().getColor(R.color.douban_gray_55_percent));
+                    checkout.setText("￥15起送");
+                    checkout.setEnabled(false);
+                    if (goods.isEmpty()) {
+                        totalPrice.setText("未选购商品");
+                    }
+                }
                 Log.e(TAG, "onGoodItemMinus: " + CommonUtil.gson.toJson(order) );
             }
         });
@@ -75,7 +105,9 @@ public class FragmentGood extends MyLazyFragment {
     private List<Good> getGoodList() {
         List<Good> goods = new ArrayList<>();
         for (int i=0; i<10; ++i){
-            goods.add(new Good());
+            Good good = new Good();
+            good.setPrice(10);
+            goods.add(good);
         }
         return goods;
     }

@@ -67,6 +67,7 @@ public class FragmentOrder extends MyLazyFragment {
     }
 
     private List<Order> initializeData() {
+        //TODO 所有用户自己的订单
         List<Order> res = new ArrayList<>();
         for (int i=0; i<10; ++i){
             res.add(new Order());
