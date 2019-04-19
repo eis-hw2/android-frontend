@@ -111,7 +111,6 @@ public class HomeActivity extends MyActivity
         User user = new User();
         user.setUsername(Constants.user_id);
         user.setPhone("18317126628");
-        user.setMoney(100);
         Constants.user = user;
     }
 

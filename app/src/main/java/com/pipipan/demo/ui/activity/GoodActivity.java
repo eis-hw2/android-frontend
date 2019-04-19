@@ -104,7 +104,7 @@ public class GoodActivity extends MyActivity
     @Override
     protected void initData() {
         //TODO 前后端对接得到store
-        toast(getIntent().getStringExtra(STOREID));
+        //toast(getIntent().getStringExtra(STOREID));
         initViewPager();
     }
 

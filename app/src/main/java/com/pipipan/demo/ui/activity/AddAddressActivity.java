@@ -7,12 +7,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.alibaba.sdk.android.oss.common.LogThreadPoolManager;
 import com.google.gson.Gson;
 import com.pipipan.demo.R;
 import com.pipipan.demo.common.MyActivity;
 import com.pipipan.demo.domain.Address;
-import com.pipipan.demo.domain.RecipientAddress;
+import com.pipipan.demo.domain.Recipient;
 
 import butterknife.BindView;
 
@@ -69,13 +68,13 @@ public class AddAddressActivity extends MyActivity {
         }));
     }
 
-    private RecipientAddress buildRecipientAddress(){
-        RecipientAddress recipientAddress = new RecipientAddress();
-        recipientAddress.setRecipient(name.getText().toString());
-        recipientAddress.setAddress(locationAddress);
-        recipientAddress.setPhone(phone.getText().toString());
-        recipientAddress.setDetailLocation(detail_address.getText().toString());
-        return recipientAddress;
+    private Recipient buildRecipientAddress(){
+        Recipient recipient = new Recipient();
+        recipient.setRecipient(name.getText().toString());
+        recipient.setAddress(locationAddress);
+        recipient.setPhone(phone.getText().toString());
+        recipient.setDetailLocation(detail_address.getText().toString());
+        return recipient;
     }
 
     @Override

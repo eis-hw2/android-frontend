@@ -9,15 +9,15 @@ import android.widget.TextView;
 
 import com.pipipan.demo.R;
 import com.pipipan.demo.common.MyRecyclerViewAdapter;
-import com.pipipan.demo.domain.RecipientAddress;
+import com.pipipan.demo.domain.Recipient;
 
 import java.util.List;
 
 
-public class AddressAdapter extends MyRecyclerViewAdapter<RecipientAddress, AddressAdapter.AddressViewHolder> {
-    public AddressAdapter(Context context, List<RecipientAddress> recipientAddressList)  {
+public class AddressAdapter extends MyRecyclerViewAdapter<Recipient, AddressAdapter.AddressViewHolder> {
+    public AddressAdapter(Context context, List<Recipient> recipientList)  {
         super(context);
-        setData(recipientAddressList);
+        setData(recipientList);
     }
 
     @NonNull
@@ -29,11 +29,11 @@ public class AddressAdapter extends MyRecyclerViewAdapter<RecipientAddress, Addr
 
     @Override
     public void onBindViewHolder(@NonNull AddressViewHolder addressViewHolder, int i) {
-        RecipientAddress recipientAddress = getItem(i);
-        addressViewHolder.addressLocation.setText(recipientAddress.getAddress().getAddressLocationName());
-        addressViewHolder.detailLocation.setText(recipientAddress.getDetailLocation());
-        addressViewHolder.receiptPhone.setText(recipientAddress.getPhone());
-        addressViewHolder.receiptName.setText(recipientAddress.getRecipient());
+        Recipient recipient = getItem(i);
+        addressViewHolder.addressLocation.setText(recipient.getAddress().getAddressLocationName());
+        addressViewHolder.detailLocation.setText(recipient.getDetailLocation());
+        addressViewHolder.receiptPhone.setText(recipient.getPhone());
+        addressViewHolder.receiptName.setText(recipient.getRecipient());
     }
 
     class AddressViewHolder extends MyRecyclerViewAdapter.ViewHolder{

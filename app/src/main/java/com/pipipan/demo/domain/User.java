@@ -1,25 +1,36 @@
 package com.pipipan.demo.domain;
 
+import java.util.List;
+
 public class User {
-    String id;
+    Long id;
     String username;
     String phone;
     String password;
-    int money;
+    String avatar;
+    List<Recipient> address;
 
-    public int getMoney() {
-        return money;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setMoney(int money) {
-        this.money = money;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
-    public String getId() {
+    public List<Recipient> getAddress() {
+        return address;
+    }
+
+    public void setAddress(List<Recipient> address) {
+        this.address = address;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

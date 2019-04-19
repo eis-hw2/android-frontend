@@ -1,5 +1,6 @@
 package com.pipipan.demo.ui.fragment;
 
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -10,6 +11,11 @@ import com.pipipan.image.ImageLoader;
 import com.hjq.permissions.OnPermission;
 import com.hjq.permissions.Permission;
 import com.hjq.permissions.XXPermissions;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.List;
 
@@ -23,9 +29,10 @@ import butterknife.OnClick;
  *    desc   : 项目框架使用示例
  */
 public class FragmentOrder extends MyLazyFragment {
-
-    @BindView(R.id.iv_test_image)
-    ImageView mImageView;
+    @BindView(R.id.refreshLayout)
+    SmartRefreshLayout refreshLayout;
+    @BindView(R.id.orders)
+    RecyclerView orders;
 
     public static FragmentOrder newInstance() {
         return new FragmentOrder();
@@ -43,12 +50,29 @@ public class FragmentOrder extends MyLazyFragment {
 
     @Override
     protected void initView() {
-
+        initRefreshLayout();
     }
 
     @Override
     protected void initData() {
 
+    }
+
+    private void initRefreshLayout() {
+        refreshLayout.setRefreshHeader(new BezierRadarHeader(getContext()).setEnableHorizontalDrag(true));
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                //refreshlayout.finishRefresh(true);//传入false表示刷新失败
+                refreshlayout.finishLoadMore(500);//传入false表示加载失败
+            }
+        });
+        refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(RefreshLayout refreshlayout) {
+                refreshlayout.finishLoadMore(500);//传入false表示加载失败
+            }
+        });
     }
 
     @Override
@@ -57,61 +81,4 @@ public class FragmentOrder extends MyLazyFragment {
         return !super.isStatusBarEnabled();
     }
 
-    @OnClick({R.id.btn_test_image, R.id.btn_test_toast, R.id.btn_test_permission,
-            R.id.btn_test_state_black, R.id.btn_test_state_white,
-            R.id.btn_test_swipe_enabled, R.id.btn_test_swipe_disable})
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_test_image:
-                ImageLoader.loadImage(mImageView, "https://www.baidu.com/img/bd_logo.png");
-                break;
-            case R.id.btn_test_toast:
-                toast("我是吐司");
-                break;
-            case R.id.btn_test_permission:
-                XXPermissions.with(getFragmentActivity())
-                        //.constantRequest() //可设置被拒绝后继续申请，直到用户授权或者永久拒绝
-                        //.permission(Permission.SYSTEM_ALERT_WINDOW, Permission.REQUEST_INSTALL_PACKAGES) //支持请求6.0悬浮窗权限8.0请求安装权限
-                        .permission(Permission.CAMERA) //不指定权限则自动获取清单中的危险权限
-                        .request(new OnPermission() {
-
-                            @Override
-                            public void hasPermission(List<String> granted, boolean isAll) {
-                                if (isAll) {
-                                    toast("获取权限成功");
-                                }else {
-                                    toast("获取权限成功，部分权限未正常授予");
-                                }
-                            }
-
-                            @Override
-                            public void noPermission(List<String> denied, boolean quick) {
-                                if(quick) {
-                                    toast("被永久拒绝授权，请手动授予权限");
-                                    //如果是被永久拒绝就跳转到应用权限系统设置页面
-                                    XXPermissions.gotoPermissionSettings(getFragmentActivity());
-                                }else {
-                                    toast("获取权限失败");
-                                }
-                            }
-                        });
-                break;
-            case R.id.btn_test_state_black:
-                ((UIActivity) getFragmentActivity()).getStatusBarConfig().statusBarDarkFont(true).init();
-                break;
-            case R.id.btn_test_state_white:
-                ((UIActivity) getFragmentActivity()).getStatusBarConfig().statusBarDarkFont(false).init();
-                break;
-            case R.id.btn_test_swipe_enabled:
-                ((UIActivity) getFragmentActivity()).getSwipeBackHelper().setSwipeBackEnable(true);
-                toast("当前界面不会生效，其他界面调用才会有效果");
-                break;
-            case R.id.btn_test_swipe_disable:
-                ((UIActivity) getFragmentActivity()).getSwipeBackHelper().setSwipeBackEnable(false);
-                toast("当前界面不会生效，其他界面调用才会有效果");
-                break;
-            default:
-                break;
-        }
-    }
 }

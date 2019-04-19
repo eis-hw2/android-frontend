@@ -1,6 +1,6 @@
 package com.pipipan.demo.domain;
 
-public class RecipientAddress {
+public class Recipient {
     long id;
     Address address;
     String detailLocation;

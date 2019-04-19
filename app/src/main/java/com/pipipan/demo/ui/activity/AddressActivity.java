@@ -9,7 +9,7 @@ import com.google.gson.Gson;
 import com.hjq.bar.TitleBar;
 import com.pipipan.demo.R;
 import com.pipipan.demo.domain.Address;
-import com.pipipan.demo.domain.RecipientAddress;
+import com.pipipan.demo.domain.Recipient;
 import com.pipipan.demo.ui.adapter.AddressAdapter;
 import com.pipipan.demo.common.MyActivity;
 
@@ -51,17 +51,17 @@ public class AddressActivity extends MyActivity{
         recyclerView.setAdapter(addressAdapter);
     }
 
-    private List<RecipientAddress> getAddresses() {
+    private List<Recipient> getAddresses() {
         //TODO 调用API得到地址信息
-        List<RecipientAddress> recipientAddresses = new ArrayList<>();
-        RecipientAddress recipientAddress = new RecipientAddress();
+        List<Recipient> recipients = new ArrayList<>();
+        Recipient recipient = new Recipient();
         Address address = new Address("上海交通大学西11宿舍", 0.0, 0.0);
-        recipientAddress.setAddress(address);
-        recipientAddress.setDetailLocation("4楼 414寝室");
-        recipientAddress.setRecipient("皮皮潘");
-        recipientAddress.setPhone("18317126628");
-        recipientAddresses.add(recipientAddress);
-        return recipientAddresses;
+        recipient.setAddress(address);
+        recipient.setDetailLocation("4楼 414寝室");
+        recipient.setRecipient("皮皮潘");
+        recipient.setPhone("18317126628");
+        recipients.add(recipient);
+        return recipients;
     }
 
     @Override
@@ -70,7 +70,7 @@ public class AddressActivity extends MyActivity{
             Gson gson = new Gson();
             String address = data.getStringExtra("address");
             if (!(address == null ))
-                addressAdapter.addItem(0, gson.fromJson(data.getStringExtra("recipientAddress"), RecipientAddress.class));
+                addressAdapter.addItem(0, gson.fromJson(data.getStringExtra("recipientAddress"), Recipient.class));
         }
     }
 }
