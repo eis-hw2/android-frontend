@@ -1,5 +1,6 @@
 package com.pipipan.demo.ui.fragment;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.TextView;
@@ -9,6 +10,7 @@ import com.pipipan.demo.common.MyLazyFragment;
 import com.pipipan.demo.domain.Good;
 import com.pipipan.demo.domain.Order;
 import com.pipipan.demo.helper.CommonUtil;
+import com.pipipan.demo.ui.activity.OrderCheckoutActivity;
 import com.pipipan.demo.ui.adapter.GoodAdapter;
 
 import java.util.ArrayList;
@@ -53,6 +55,11 @@ public class FragmentGood extends MyLazyFragment {
     @Override
     protected void initView() {
         checkout.setEnabled(false);
+        checkout.setOnClickListener((v -> {
+            Intent intent = new Intent(getContext(), OrderCheckoutActivity.class);
+            intent.putExtra("order", CommonUtil.gson.toJson(order));
+            startActivity(intent);
+        }));
     }
 
     @Override
