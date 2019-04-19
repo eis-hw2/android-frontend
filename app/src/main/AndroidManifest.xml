@@ -106,7 +106,9 @@
             android:process=":remote" />
 
         <activity android:name=".ui.activity.OrderActivity" />
-        <activity android:name=".ui.activity.OrderCheckoutActivity"></activity>
+        <activity android:name=".ui.activity.OrderCheckoutActivity"/>
+        <activity android:name=".ui.activity.OrderProxyDetailActivity"/>
+        <activity android:name=".ui.activity.OrderUserDetailActivity"/>
     </application>
 
 </manifest>

@@ -10,6 +10,7 @@ import com.hjq.bar.TitleBar;
 import com.pipipan.demo.R;
 import com.pipipan.demo.domain.Address;
 import com.pipipan.demo.domain.Recipient;
+import com.pipipan.demo.helper.CommonUtil;
 import com.pipipan.demo.ui.adapter.AddressAdapter;
 import com.pipipan.demo.common.MyActivity;
 
@@ -47,7 +48,16 @@ public class AddressActivity extends MyActivity{
 
     @Override
     protected void initData() {
-        addressAdapter = new AddressAdapter(getContext(), getAddresses());
+        addressAdapter = new AddressAdapter(getContext(), getAddresses(), getIntent().getBooleanExtra("isSelectAddress", false));
+        if (getIntent().getBooleanExtra("isSelectAddress", false)) addressAdapter.setItemListener(addressAdapter.new ItemListener() {
+            @Override
+            public void onItemClicked(Recipient recipient) {
+                Intent intent = new Intent();
+                intent.putExtra("recipient", CommonUtil.gson.toJson(recipient));
+                setResult(0, intent);
+                finish();
+            }
+        });
         recyclerView.setAdapter(addressAdapter);
     }
 

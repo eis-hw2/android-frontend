@@ -1,14 +1,20 @@
 package com.pipipan.demo.ui.activity;
 
+import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.hjq.bar.TitleBar;
 import com.pipipan.demo.R;
 import com.pipipan.demo.common.MyActivity;
+import com.pipipan.demo.domain.Address;
 import com.pipipan.demo.domain.Good;
 import com.pipipan.demo.domain.Order;
+import com.pipipan.demo.domain.Recipient;
 import com.pipipan.demo.helper.CommonUtil;
 import com.pipipan.demo.ui.adapter.OrderGoodAdapter;
 import com.pipipan.demo.widget.XCollapsingToolbarLayout;
@@ -28,8 +34,18 @@ public class OrderCheckoutActivity extends MyActivity implements XCollapsingTool
     XCollapsingToolbarLayout mCollapsingToolbarLayout;
     @BindView(R.id.goods)
     RecyclerView goods;
+    @BindView(R.id.receipt)
+    RelativeLayout receipt;
+    @BindView(R.id.address)
+    TextView address;
+    @BindView(R.id.receiptName)
+    TextView receiptName;
+    @BindView(R.id.receiptPhone)
+    TextView receiptPhone;
+
 
     Order order;
+    Recipient userRecipient;
 
     @Override
     protected int getLayoutId() {
@@ -42,8 +58,29 @@ public class OrderCheckoutActivity extends MyActivity implements XCollapsingTool
     }
 
     @Override
-    protected void initView() {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case 0:
+                Log.e(TAG, "onActivityResult: " + data.getStringExtra("recipient"));
+                userRecipient = CommonUtil.gson.fromJson(data.getStringExtra("recipient"), Recipient.class);
+                initRecipient();
+        }
+    }
 
+    private void initRecipient() {
+        address.setText(userRecipient.getAddress().getAddressLocationName() + " " + userRecipient.getDetailLocation());
+        receiptName.setText(userRecipient.getRecipient());
+        receiptPhone.setText(userRecipient.getPhone());
+    }
+
+    @Override
+    protected void initView() {
+        receipt.setOnClickListener((v -> {
+            Intent intent = new Intent(getContext(), AddressActivity.class);
+            intent.putExtra("isSelectAddress", true);
+            startActivityForResult(intent, 0);
+        }));
     }
 
     @Override
@@ -67,10 +104,10 @@ public class OrderCheckoutActivity extends MyActivity implements XCollapsingTool
     public void onScrimsStateChange(boolean shown) {
         // CollapsingToolbarLayout 发生了渐变
         if (shown) {
-            titleBar.setTitle("订单");
+            titleBar.setTitle("");
             getStatusBarConfig().statusBarDarkFont(true).init();
         }else {
-            titleBar.setTitle("");
+            titleBar.setTitle("订单");
             getStatusBarConfig().statusBarDarkFont(false).init();
         }
     }
