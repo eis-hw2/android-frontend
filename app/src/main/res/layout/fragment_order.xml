@@ -14,8 +14,9 @@
         app:title="订单" />
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        app:srlPrimaryColor="@color/douban_blue_80_percent"
+        app:srlAccentColor="@android:color/white"
         android:id="@+id/refreshLayout"
-        android:background="@color/white80"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <android.support.v7.widget.RecyclerView

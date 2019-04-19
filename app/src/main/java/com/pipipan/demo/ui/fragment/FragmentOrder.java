@@ -11,6 +11,8 @@ import com.pipipan.image.ImageLoader;
 import com.hjq.permissions.OnPermission;
 import com.hjq.permissions.Permission;
 import com.hjq.permissions.XXPermissions;
+import com.scwang.smartrefresh.header.DeliveryHeader;
+import com.scwang.smartrefresh.header.FlyRefreshHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
@@ -59,7 +61,7 @@ public class FragmentOrder extends MyLazyFragment {
     }
 
     private void initRefreshLayout() {
-        refreshLayout.setRefreshHeader(new BezierRadarHeader(getContext()).setEnableHorizontalDrag(true));
+        refreshLayout.setRefreshHeader(new DeliveryHeader(getContext()));
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
