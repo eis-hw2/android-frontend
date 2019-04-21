@@ -28,14 +28,14 @@ tools:context=".ui.activity.GoodActivity">
             android:layout_width="70dp"
             android:layout_height="70dp" />
         <android.support.v7.widget.Toolbar
-            android:id="@+id/t_test_title"
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
             android:layout_marginRight="20dp"
             app:layout_collapseMode="pin" />
 
         <com.hjq.bar.TitleBar
-            android:id="@+id/tb_test_a_bar"
+            android:id="@+id/titlebar"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
             app:backButton="false"

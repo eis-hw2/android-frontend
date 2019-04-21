@@ -31,7 +31,7 @@ public class OrderGoodAdapter extends MyRecyclerViewAdapter<Good, OrderGoodAdapt
 
     @Override
     public void onBindViewHolder(@NonNull OrderGoodViewHolder orderViewHolder, int i) {
-
+        //TODO 绑定对应的信息
     }
 
     class OrderGoodViewHolder extends MyRecyclerViewAdapter.ViewHolder{

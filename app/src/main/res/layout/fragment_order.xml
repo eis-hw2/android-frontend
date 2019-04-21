@@ -7,7 +7,7 @@
     tools:context=".ui.fragment.FragmentOrder">
 
     <com.hjq.bar.TitleBar
-        android:id="@+id/tb_test_c_title"
+        android:id="@+id/titlebar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:backButton="false"
@@ -18,7 +18,7 @@
         app:srlAccentColor="@android:color/white"
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/orders"
             android:layout_width="match_parent"
@@ -26,5 +26,13 @@
 
         </android.support.v7.widget.RecyclerView>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-
+    <Button
+        android:id="@+id/view"
+        android:visibility="gone"
+        android:text="查看派送路线"
+        android:layout_margin="20dp"
+        android:textColor="@color/white80"
+        android:background="@color/light_green"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>

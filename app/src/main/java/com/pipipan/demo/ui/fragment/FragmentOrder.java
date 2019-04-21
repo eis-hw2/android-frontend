@@ -1,23 +1,22 @@
 package com.pipipan.demo.ui.fragment;
 
+import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.Button;
 
+import com.hjq.bar.TitleBar;
+import com.pipipan.base.BaseRecyclerViewAdapter;
 import com.pipipan.demo.R;
 import com.pipipan.demo.common.MyLazyFragment;
-import com.pipipan.demo.common.UIActivity;
 import com.pipipan.demo.domain.Order;
+import com.pipipan.demo.helper.CommonUtil;
+import com.pipipan.demo.ui.activity.OrderProxyDetailActivity;
 import com.pipipan.demo.ui.adapter.OrderAdapter;
-import com.pipipan.image.ImageLoader;
-import com.hjq.permissions.OnPermission;
-import com.hjq.permissions.Permission;
-import com.hjq.permissions.XXPermissions;
 import com.scwang.smartrefresh.header.DeliveryHeader;
-import com.scwang.smartrefresh.header.FlyRefreshHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
@@ -25,7 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  *    author : Android 轮子哥
@@ -33,16 +31,28 @@ import butterknife.OnClick;
  *    time   : 2018/10/18
  *    desc   : 项目框架使用示例
  */
-public class FragmentOrder extends MyLazyFragment {
+public abstract class FragmentOrder extends MyLazyFragment {
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
     @BindView(R.id.orders)
     RecyclerView orders;
+    @BindView(R.id.titlebar)
+    TitleBar titleBar;
+    @BindView(R.id.view)
+    Button view;
 
     OrderAdapter orderAdapter;
 
-    public static FragmentOrder newInstance() {
-        return new FragmentOrder();
+    public static FragmentOrder createUserOrderFragment() {
+        return new UserOrderFragment();
+    }
+
+    public static FragmentOrder createLocalOrderFragment() {
+        return new LocalOrderFragment();
+    }
+
+    public static FragmentOrder createUnCompleteOrderFragment() {
+        return new UncompleteOrderFragment();
     }
 
     @Override
@@ -52,28 +62,26 @@ public class FragmentOrder extends MyLazyFragment {
 
     @Override
     protected int getTitleBarId() {
-        return R.id.tb_test_c_title;
+        return 0;
     }
 
     @Override
     protected void initView() {
         initRefreshLayout();
+        initProxyOrderView();
+    }
+
+    public void initProxyOrderView(){
+
     }
 
     @Override
     protected void initData() {
-        orderAdapter = new OrderAdapter(getContext(), initializeData());
+        orderAdapter = new OrderAdapter(getContext(), initOrderData());
         orders.setAdapter(orderAdapter);
     }
 
-    private List<Order> initializeData() {
-        //TODO 所有用户自己的订单
-        List<Order> res = new ArrayList<>();
-        for (int i=0; i<10; ++i){
-            res.add(new Order());
-        }
-        return res;
-    }
+    public abstract List<Order> initOrderData();
 
     private void initRefreshLayout() {
         refreshLayout.setRefreshHeader(new DeliveryHeader(getContext()));
@@ -97,5 +105,4 @@ public class FragmentOrder extends MyLazyFragment {
         // 使用沉浸式状态栏
         return !super.isStatusBarEnabled();
     }
-
 }

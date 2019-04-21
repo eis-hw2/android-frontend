@@ -2,6 +2,7 @@ package com.pipipan.demo.ui.activity;
 
 import android.support.v7.widget.Toolbar;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.hjq.bar.TitleBar;
 import com.pipipan.demo.R;
 import com.pipipan.demo.common.MyActivity;
@@ -36,6 +37,9 @@ public class CopyActivity extends MyActivity implements XCollapsingToolbarLayout
 
     @Override
     protected void initView() {
+        ImmersionBar.setTitleBar(getActivity(), toolbar);
+        //设置渐变监听
+        mCollapsingToolbarLayout.setOnScrimsListener(this);
 
     }
 

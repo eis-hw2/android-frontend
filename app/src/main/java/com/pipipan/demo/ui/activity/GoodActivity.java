@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.hjq.bar.TitleBar;
 import com.pipipan.demo.R;
 import com.pipipan.demo.common.MyActivity;
@@ -41,9 +42,9 @@ public class GoodActivity extends MyActivity
     AppBarLayout mAppBarLayout;
     @BindView(R.id.ctl_test_bar)
     XCollapsingToolbarLayout mCollapsingToolbarLayout;
-    @BindView(R.id.t_test_title)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @BindView(R.id.tb_test_a_bar)
+    @BindView(R.id.titlebar)
     TitleBar mTitleBar;
     @BindView(R.id.search)
     EditText search;
@@ -61,7 +62,7 @@ public class GoodActivity extends MyActivity
 
     @Override
     protected int getTitleBarId() {
-        return 0;
+        return R.id.titlebar;
     }
 
     @Override
@@ -84,6 +85,8 @@ public class GoodActivity extends MyActivity
         });
         scrollView.setFillViewport(true);
         getWindow().setStatusBarColor(getResources().getColor(R.color.douban_blue_80_percent));
+        //TODO 前后端对接得到store
+        initViewPager();
     }
 
     private void initViewPager() {
@@ -103,9 +106,7 @@ public class GoodActivity extends MyActivity
 
     @Override
     protected void initData() {
-        //TODO 前后端对接得到store
         //toast(getIntent().getStringExtra(STOREID));
-        initViewPager();
     }
 
     @Override
@@ -126,8 +127,10 @@ public class GoodActivity extends MyActivity
     public void onScrimsStateChange(boolean shown) {
         // CollapsingToolbarLayout 发生了渐变
         if (shown) {
+            search.setVisibility(View.VISIBLE);
             getStatusBarConfig().statusBarDarkFont(true).init();
         }else {
+            search.setVisibility(View.GONE);
             getStatusBarConfig().statusBarDarkFont(false).init();
         }
     }

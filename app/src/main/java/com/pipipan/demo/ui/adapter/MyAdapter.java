@@ -20,7 +20,7 @@ public class MyAdapter extends BaseFragmentAdapter<MyLazyFragment> {
     protected void init(FragmentManager manager, List<MyLazyFragment> list) {
         list.add(FragmentMain.newInstance());
         list.add(FragmentFound.newInstance());
-        list.add(FragmentOrder.newInstance());
+        list.add(FragmentOrder.createUserOrderFragment());
         list.add(FragmentUser.getInstance());
     }
 
