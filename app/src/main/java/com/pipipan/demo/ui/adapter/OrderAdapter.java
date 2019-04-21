@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.pipipan.demo.R;
+import com.pipipan.demo.common.Constants;
 import com.pipipan.demo.common.MyRecyclerViewAdapter;
 import com.pipipan.demo.domain.Order;
 import com.pipipan.demo.helper.CommonUtil;
@@ -33,10 +34,21 @@ public class OrderAdapter extends MyRecyclerViewAdapter<Order, OrderAdapter.Orde
         //TODO 属性一一对应
         Order order = getItem(i);
         orderViewHolder.view.setOnClickListener((v -> {
-            //TODO 分两种情况得到对应的订单详情页:当前用户为proxy，当前用户为buyer
-            Intent intent = new Intent(getContext(), OrderProxyDetailActivity.class);
-            intent.putExtra("order", CommonUtil.gson.toJson(order));
-            getContext().startActivity(intent);
+            //TODO 分三种情况得到对应的订单详情页:当前用户为proxy，当前用户为buyer
+//            if (order.getProxy().getId() == Constants.user.getId()) {
+            if (true){
+                Intent intent = new Intent(getContext(), OrderProxyDetailActivity.class);
+                intent.putExtra("order", CommonUtil.gson.toJson(order));
+                if (order.getStatus().equals(Order.Status.WAITING)) {
+                    intent.putExtra("isWaiting", true);
+                }
+                getContext().startActivity(intent);
+            }
+            else {
+                Intent intent = new Intent(getContext(), OrderProxyDetailActivity.class);
+                intent.putExtra("order", CommonUtil.gson.toJson(order));
+                getContext().startActivity(intent);
+            }
         }));
     }
 

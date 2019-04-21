@@ -3,6 +3,8 @@ package com.pipipan.demo.ui.activity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -30,6 +32,7 @@ public class OrderProxyDetailActivity extends MyActivity implements XCollapsingT
     Toolbar toolbar;
     @BindView(R.id.ctl_bar)
     XCollapsingToolbarLayout mCollapsingToolbarLayout;
+
     @BindView(R.id.goods)
     RecyclerView goods;
     @BindView(R.id.receipt)
@@ -40,6 +43,10 @@ public class OrderProxyDetailActivity extends MyActivity implements XCollapsingT
     TextView receiptName;
     @BindView(R.id.receiptPhone)
     TextView receiptPhone;
+    @BindView(R.id.receiveOrder)
+    Button receiveOrder;
+    @BindView(R.id.receiveGood)
+    Button receiveGood;
 
 
     Order order;
@@ -57,10 +64,13 @@ public class OrderProxyDetailActivity extends MyActivity implements XCollapsingT
 
     @Override
     protected void initView() {
+        getWindow().setStatusBarColor(getResources().getColor(R.color.douban_blue_80_percent));
         ImmersionBar.setTitleBar(getActivity(), toolbar);
         //设置渐变监听
         mCollapsingToolbarLayout.setOnScrimsListener(this);
         //TODO 填充收件人信息
+        if (getIntent().getBooleanExtra("isWaiting", false)) receiveOrder.setVisibility(View.VISIBLE);
+        else receiveGood.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -83,9 +93,9 @@ public class OrderProxyDetailActivity extends MyActivity implements XCollapsingT
     public void onScrimsStateChange(boolean shown) {
         // CollapsingToolbarLayout 发生了渐变
         if (shown) {
-            getStatusBarConfig().statusBarDarkFont(true).init();
+            getWindow().setStatusBarColor(getResources().getColor(R.color.white));
         }else {
-            getStatusBarConfig().statusBarDarkFont(false).init();
+            getWindow().setStatusBarColor(getResources().getColor(R.color.douban_blue_80_percent));
         }
     }
 

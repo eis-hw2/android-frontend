@@ -10,7 +10,7 @@ tools:context=".ui.activity.OrderCheckoutActivity">
     android:id="@+id/abl_test_bar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+    android:background="@color/douban_blue_80_percent"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
     app:elevation="0dp">
 
@@ -45,13 +45,15 @@ tools:context=".ui.activity.OrderCheckoutActivity">
                 android:text="上海交通大学西11宿舍"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-            <ImageView
-                android:layout_marginTop="4dp"
+            <Button
+                android:layout_margin="20dp"
                 android:layout_alignParentRight="true"
-                android:layout_alignTop="@id/address"
-                android:src="@mipmap/ic_arrow_white"
-                android:layout_width="20dp"
-                android:layout_height="20dp" />
+                android:layout_centerVertical="true"
+                android:background="@drawable/contact_button"
+                android:textColor="@color/white80"
+                android:text="联系Ta"
+                android:layout_width="70dp"
+                android:layout_height="40dp" />
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_below="@id/address"
@@ -82,7 +84,7 @@ tools:context=".ui.activity.OrderCheckoutActivity">
         <com.hjq.bar.TitleBar
             android:id="@+id/titlebar"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="30dp"
             app:backButton="false"
             app:barStyle="transparent"
             app:titleColor="@color/black"
@@ -284,16 +286,18 @@ tools:context=".ui.activity.OrderCheckoutActivity">
             </RelativeLayout>
         </LinearLayout>
         <Button
-            android:id="@+id/contact"
-            android:text="与买方联系"
+            android:visibility="gone"
+            android:id="@+id/receiveOrder"
+            android:text="确认接单"
             android:textColor="@color/white80"
             android:layout_margin="10dp"
-            android:background="@color/douban_red_80_percent"
+            android:background="@color/light_green"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <Button
-            android:id="@+id/receive"
-            android:text="接单"
+            android:visibility="gone"
+            android:id="@+id/receiveGood"
+            android:text="确认送达"
             android:textColor="@color/white80"
             android:layout_margin="10dp"
             android:background="@color/light_green"

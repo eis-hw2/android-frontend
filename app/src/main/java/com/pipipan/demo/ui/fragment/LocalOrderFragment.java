@@ -18,7 +18,11 @@ public class LocalOrderFragment extends FragmentOrder {
     public List<Order> initOrderData() {
         //TODO 当前用户附近的订单
         List<Order> res = new ArrayList<>();
-        for (int i=0; i<5; ++i) res.add(new Order());
+        for (int i=0; i<5; ++i) {
+            Order order = new Order();
+            order.setStatus(Order.Status.WAITING);
+            res.add(order);
+        }
         return res;
     }
 }

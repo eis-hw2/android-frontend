@@ -10,7 +10,11 @@ public class UserOrderFragment extends FragmentOrder{
     public List<Order> initOrderData() {
         //TODO 当前用户的订单
         List<Order> res = new ArrayList<>();
-        for (int i=0; i<10; ++i) res.add(new Order());
+        for (int i=0; i<10; ++i) {
+            Order order = new Order();
+            order.setStatus(Order.Status.TO_BE_CHECKED);
+            res.add(order);
+        }
         return res;
     }
 }
