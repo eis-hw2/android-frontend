@@ -19,12 +19,16 @@ import com.pipipan.demo.domain.User;
 import com.pipipan.demo.helper.ActivityStackManager;
 import com.pipipan.demo.helper.CommonUtil;
 import com.pipipan.demo.helper.DoubleClickHelper;
+import com.pipipan.demo.network.Network;
 import com.pipipan.demo.ui.adapter.MyAdapter;
 import com.pipipan.demo.ui.fragment.FragmentUser;
 import com.pipipan.demo.ui.fragment.FragmentUserLogin;
 import com.pipipan.image.ImageLoader;
 
 import butterknife.BindView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  *    author : Android 轮子哥
@@ -107,17 +111,26 @@ public class HomeActivity extends MyActivity
 
         Constants.user_id = CommonUtil.getStringFromSharedPreference(getContext(), "user_id");
         if (!Constants.user_id.isEmpty()){
-            prepareUserInformation();
             sendBroadcast(new Intent("login"));
         }
     }
 
     private void prepareUserInformation() {
-        //TODO 拉取用户信息并存入Constants.user
-        User user = new User();
-        user.setUsername(Constants.user_id);
-        user.setPhone("18317126628");
-        Constants.user = user;
+        if (Constants.user == null) {
+            Network.getInstance().getUserById(Long.valueOf(Constants.user_id)).enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    User user = response.body();
+                    Log.e(TAG, "onResponse: " + CommonUtil.gson.toJson(user) );
+                    Constants.user = user;
+                }
+
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    toast("网络出现故障");
+                }
+            });
+        }
     }
 
     /**
