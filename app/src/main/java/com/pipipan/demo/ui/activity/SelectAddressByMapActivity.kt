@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -24,16 +23,15 @@ import com.baidu.mapapi.search.geocode.*
 import com.baidu.mapapi.search.sug.SuggestionResult
 import com.baidu.mapapi.search.sug.SuggestionSearch
 import com.baidu.mapapi.search.sug.SuggestionSearchOption
-import com.google.gson.Gson
 import com.pipipan.demo.R
 import com.pipipan.demo.domain.Address
 import com.pipipan.demo.helper.CommonUtil
 import kotlinx.android.synthetic.main.activity_select_address_by_map.*
-import kotlinx.android.synthetic.main.fragment_user.*
 import java.util.*
 import kotlin.collections.ArrayList
 
 class SelectAddressByMapActivity : AppCompatActivity() {
+
     private val REQUEST_CODE_CITY = 999
     private lateinit var mLocClient: LocationClient
     private lateinit var geoCoder: GeoCoder
@@ -234,12 +232,9 @@ class SelectAddressByMapActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        //此处处理城市选择
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_CODE_CITY && resultCode == Activity.RESULT_OK) {
-            if (data != null) {
-                mSelectCity = data.getStringExtra("city")
-            }
+            mSelectCity = data!!.getStringExtra("city")
             mTvSelectedCity.text = mSelectCity
             mSuggestionInfos.clear()
             sugAdapter.clear()

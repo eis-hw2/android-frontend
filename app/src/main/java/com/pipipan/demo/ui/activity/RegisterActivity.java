@@ -1,16 +1,24 @@
 package com.pipipan.demo.ui.activity;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.pipipan.demo.R;
+import com.pipipan.demo.common.Constants;
 import com.pipipan.demo.common.MyActivity;
+import com.pipipan.demo.domain.User;
+import com.pipipan.demo.helper.CommonUtil;
 import com.pipipan.demo.helper.InputTextHelper;
+import com.pipipan.demo.network.Network;
 import com.pipipan.widget.CountdownView;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  *    author : Android 轮子哥
@@ -19,6 +27,7 @@ import butterknife.OnClick;
  *    desc   : 注册界面
  */
 public class RegisterActivity extends MyActivity {
+    private static final String TAG = "RegisterActivity";
 
     @BindView(R.id.et_register_phone)
     EditText mPhoneView;
@@ -32,6 +41,9 @@ public class RegisterActivity extends MyActivity {
     EditText mPasswordView1;
     @BindView(R.id.et_register_password2)
     EditText mPasswordView2;
+
+    @BindView(R.id.name)
+    EditText name;
 
     @BindView(R.id.btn_register_commit)
     Button mCommitView;
@@ -51,7 +63,7 @@ public class RegisterActivity extends MyActivity {
     @Override
     protected void initView() {
         mInputTextHelper = new InputTextHelper(mCommitView);
-        mInputTextHelper.addViews(mPhoneView, mCodeView, mPasswordView1, mPasswordView2);
+        mInputTextHelper.addViews(mPhoneView, mCodeView, mPasswordView1, mPasswordView2, name);
     }
 
     @Override
@@ -90,6 +102,23 @@ public class RegisterActivity extends MyActivity {
                     toast(getResources().getString(R.string.two_password_input_error));
                     break;
                 }
+                User user = new User();
+                user.setPhone(mPhoneView.getText().toString());
+                user.setPassword(mPasswordView1.getText().toString());
+                user.setUsername(name.getText().toString());
+                Network.getInstance().logup(user).enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        User u = response.body();
+                        Log.e(TAG, "onResponse: " + CommonUtil.gson.toJson(u));
+                        finish();
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+
+                    }
+                });
                 break;
             default:
                 break;

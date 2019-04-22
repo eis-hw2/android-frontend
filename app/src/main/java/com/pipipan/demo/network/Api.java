@@ -19,6 +19,8 @@ public interface Api {
     Call<Boolean> test(@Query("key") String test);
 
     // user
-    @POST("user/login")
-    Call<User> login(@Query("phone") String phone, @Query("password") String password, @Query("deviceId") String deviceId);
+    @POST("User")
+    Call<User> logup(@Body User user);
+    @GET("User/{id}")
+    Call<User> getUser(@Path("id") long id);
 }

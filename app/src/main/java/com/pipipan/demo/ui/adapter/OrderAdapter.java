@@ -49,7 +49,7 @@ public class OrderAdapter extends MyRecyclerViewAdapter<Order, OrderAdapter.Orde
         orderViewHolder.view.setOnClickListener((v -> {
             //TODO 分三种情况得到对应的订单详情页:当前用户为proxy，当前用户为buyer
 //            if (order.getProxy().getId() == Constants.user.getId()) {
-            if (true){
+            if (false){
                 Intent intent = new Intent(getContext(), OrderProxyDetailActivity.class);
                 intent.putExtra("order", CommonUtil.gson.toJson(order));
                 getContext().startActivity(intent);

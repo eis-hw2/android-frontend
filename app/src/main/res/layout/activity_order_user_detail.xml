@@ -21,12 +21,17 @@ tools:context=".ui.activity.OrderCheckoutActivity">
         app:contentScrim="@color/white"
         app:layout_scrollFlags="scroll|exitUntilCollapsed"
         app:scrimVisibleHeightTrigger="@dimen/space_200">
+        <com.baidu.mapapi.map.MapView
+            android:clickable="true"
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </com.baidu.mapapi.map.MapView>
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
             app:layout_collapseMode="pin" />
-
         <com.hjq.bar.TitleBar
             android:id="@+id/titlebar"
             android:layout_width="match_parent"

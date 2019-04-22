@@ -115,6 +115,19 @@
 
             <View style="@style/HorizontalLineStyle" />
 
+            <EditText
+                android:id="@+id/name"
+                style="@style/EditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_40"
+                android:hint="输入姓名"
+                android:maxLength="20"
+                android:maxLines="1" />
+
+            <View style="@style/HorizontalLineStyle" />
+
+
             <Button
                 android:id="@+id/btn_register_commit"
                 style="@style/ButtonStyle"
