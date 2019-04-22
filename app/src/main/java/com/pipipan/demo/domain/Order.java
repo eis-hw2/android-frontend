@@ -8,8 +8,8 @@ import java.util.List;
 public class Order {
     public static Order createOrder(Store store) {
         Order order = new Order();
-        if (!Constants.user.getAddress().isEmpty())
-            order.setRecipient(Constants.user.getAddress().get(0));
+        if (!Constants.user.getRecipientaddress().isEmpty())
+            order.setRecipient(Constants.user.getRecipientaddress().get(0));
         else order.setRecipient(new NullRecipient());
         order.setProxyprice(10);
         order.setBuyer(Constants.user);

@@ -10,15 +10,12 @@ import com.google.gson.Gson;
 import com.hjq.bar.TitleBar;
 import com.pipipan.demo.R;
 import com.pipipan.demo.common.Constants;
-import com.pipipan.demo.domain.Address;
-import com.pipipan.demo.domain.NullRecipient;
 import com.pipipan.demo.domain.Recipient;
 import com.pipipan.demo.helper.CommonUtil;
 import com.pipipan.demo.network.Network;
 import com.pipipan.demo.ui.adapter.AddressAdapter;
 import com.pipipan.demo.common.MyActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -48,6 +45,7 @@ public class AddressActivity extends MyActivity{
 
     @Override
     protected void initView() {
+        Log.e(TAG, "initView: " + CommonUtil.gson.toJson(Constants.user) );
         titleBar.setTitle("收货地址");
         addAddress.setOnClickListener((v -> {
             startActivityForResult(new Intent(getContext(), AddAddressActivity.class), 1);
@@ -70,7 +68,7 @@ public class AddressActivity extends MyActivity{
     }
 
     private List<Recipient> getAddresses() {
-        return Constants.user.getAddress();
+        return Constants.user.getRecipientaddress();
     }
 
     @Override

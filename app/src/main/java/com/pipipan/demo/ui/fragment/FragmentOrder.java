@@ -89,7 +89,7 @@ public abstract class FragmentOrder extends MyLazyFragment {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 //refreshlayout.finishRefresh(true);//传入false表示刷新失败
-                refreshlayout.finishLoadMore(500);//传入false表示加载失败
+                orderAdapter.setData(initOrderData());
             }
         });
         refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {

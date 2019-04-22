@@ -8,7 +8,7 @@ public class User {
     String phone;
     String password;
     String avatar;
-    List<Recipient> address;
+    List<Recipient> recipientaddress;
 
     public String getAvatar() {
         return avatar;
@@ -18,12 +18,12 @@ public class User {
         this.avatar = avatar;
     }
 
-    public List<Recipient> getAddress() {
-        return address;
+    public List<Recipient> getRecipientaddress() {
+        return recipientaddress;
     }
 
-    public void setAddress(List<Recipient> address) {
-        this.address = address;
+    public void setRecipientaddress(List<Recipient> address) {
+        this.recipientaddress = address;
     }
 
     public Long getId() {

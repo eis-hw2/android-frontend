@@ -35,6 +35,9 @@ public class OrderAdapter extends MyRecyclerViewAdapter<Order, OrderAdapter.Orde
     public void onBindViewHolder(@NonNull OrderViewHolder orderViewHolder, int i) {
         //TODO 属性一一对应
         Order order = getItem(i);
+        orderViewHolder.storeName.setText(order.getStore().getStorename());
+        orderViewHolder.good.setText(String.valueOf(order.getGoods().get(0).getGoodname()) + "等物品");
+        orderViewHolder.good.setText("￥" + String.valueOf(order.getGoodsprice() + order.getProxyprice()));
         switch (order.getStatus()){
             case WAITING:
                 orderViewHolder.status.setText("待接单");
@@ -47,16 +50,13 @@ public class OrderAdapter extends MyRecyclerViewAdapter<Order, OrderAdapter.Orde
                 break;
         }
         orderViewHolder.view.setOnClickListener((v -> {
-            //TODO 分三种情况得到对应的订单详情页:当前用户为proxy，当前用户为buyer
-//            if (order.getProxy().getId() == Constants.user.getId()) {
-            if (false){
+            Constants.order = order;
+            if (order.getProxy().getId() == Constants.user.getId()) {
                 Intent intent = new Intent(getContext(), OrderProxyDetailActivity.class);
-                intent.putExtra("order", CommonUtil.gson.toJson(order));
                 getContext().startActivity(intent);
             }
             else {
                 Intent intent = new Intent(getContext(), OrderUserDetailActivity.class);
-                intent.putExtra("order", CommonUtil.gson.toJson(order));
                 getContext().startActivity(intent);
             }
         }));
@@ -65,10 +65,16 @@ public class OrderAdapter extends MyRecyclerViewAdapter<Order, OrderAdapter.Orde
     class OrderViewHolder extends MyRecyclerViewAdapter.ViewHolder{
         View view;
         TextView status;
+        TextView storeName;
+        TextView good;
+        TextView money;
         public OrderViewHolder(View itemView) {
             super(itemView);
             view = itemView;
             status = itemView.findViewById(R.id.status);
+            storeName = itemView.findViewById(R.id.storeName);
+            good = itemView.findViewById(R.id.good);
+            money = itemView.findViewById(R.id.money);
         }
     }
 }
