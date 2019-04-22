@@ -2,7 +2,7 @@ package com.pipipan.demo.domain;
 
 public class NullRecipient extends Recipient {
     @Override
-    public String getDetailLocation() {
+    public String getDetaillocation() {
         return "不知道路";
     }
 
@@ -12,7 +12,7 @@ public class NullRecipient extends Recipient {
     }
 
     @Override
-    public String getRecipient() {
+    public String getContact() {
         return "不知道先生";
     }
 

@@ -18,21 +18,25 @@
         app:srlAccentColor="@android:color/white"
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/orders"
+        android:layout_height="match_parent">
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </android.support.v7.widget.RecyclerView>
+            android:layout_height="match_parent">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/orders"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </android.support.v7.widget.RecyclerView>
+            <Button
+                android:layout_alignParentBottom="true"
+                android:id="@+id/view"
+                android:visibility="gone"
+                android:text="查看推荐路线"
+                android:layout_margin="30dp"
+                android:textColor="@color/white80"
+                android:background="@color/light_green"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-    <Button
-        android:id="@+id/view"
-        android:visibility="gone"
-        android:text="查看推荐路线"
-        android:layout_margin="20dp"
-        android:textColor="@color/white80"
-        android:background="@color/light_green"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 </LinearLayout>

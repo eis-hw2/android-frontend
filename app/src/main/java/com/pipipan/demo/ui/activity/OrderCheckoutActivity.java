@@ -20,7 +20,6 @@ import com.pipipan.demo.network.Network;
 import com.pipipan.demo.ui.adapter.OrderGoodAdapter;
 import com.pipipan.demo.widget.XCollapsingToolbarLayout;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -80,13 +79,14 @@ public class OrderCheckoutActivity extends MyActivity implements XCollapsingTool
             case 0:
                 Log.e(TAG, "onActivityResult: " + data.getStringExtra("recipient"));
                 userRecipient = CommonUtil.gson.fromJson(data.getStringExtra("recipient"), Recipient.class);
+                order.setRecipient(userRecipient);
                 initRecipient();
         }
     }
 
     private void initRecipient() {
-        address.setText(userRecipient.getAddress().getAddress() + " " + userRecipient.getDetailLocation());
-        receiptName.setText(userRecipient.getRecipient());
+        address.setText(userRecipient.getAddress().getAddress() + " " + userRecipient.getDetaillocation());
+        receiptName.setText(userRecipient.getContact());
         receiptPhone.setText(userRecipient.getPhone());
     }
 
@@ -105,14 +105,21 @@ public class OrderCheckoutActivity extends MyActivity implements XCollapsingTool
         }));
         initRecipient();
         storeName.setText(order.getStore().getStorename());
-        totalPrice.setText(String.valueOf(order.getGoodsprice()));
-        bottomTotal.setText(String.valueOf(order.getGoodsprice() + order.getProxyprice()));
+        totalPrice.setText(String.valueOf(order.getGoodsprice() + order.getProxyprice()));
+        bottomTotal.setText("￥" + String.valueOf(order.getGoodsprice() + order.getProxyprice()));
         proxyPrice.setText(String.valueOf(order.getProxyprice()));
         checkout.setOnClickListener((v -> {
             Network.getInstance().createOrder(order).enqueue(new Callback<Order>() {
                 @Override
                 public void onResponse(Call<Order> call, Response<Order> response) {
-                    startActivity(HomeActivity.class);
+                    Log.e(TAG, "onResponse: " + CommonUtil.gson.toJson(order));
+                    Log.e(TAG, "onResponse: " + CommonUtil.gson.toJson(response.body()));
+                    Constants.order = order;
+
+                    Intent intent = new Intent(getContext(), HomeActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivity(intent);
                 }
 
                 @Override

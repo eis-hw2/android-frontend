@@ -3,8 +3,8 @@ package com.pipipan.demo.domain;
 public class Recipient {
     long id;
     Address address;
-    String detailLocation;
-    String recipient;
+    String detaillocation;
+    String contact;
     String phone;
 
     public long getId() {
@@ -23,20 +23,20 @@ public class Recipient {
         this.address = address;
     }
 
-    public String getDetailLocation() {
-        return detailLocation;
+    public String getDetaillocation() {
+        return detaillocation;
     }
 
-    public void setDetailLocation(String detailLocation) {
-        this.detailLocation = detailLocation;
+    public void setDetaillocation(String detailLocation) {
+        this.detaillocation = detailLocation;
     }
 
-    public String getRecipient() {
-        return recipient;
+    public String getContact() {
+        return contact;
     }
 
-    public void setRecipient(String recipient) {
-        this.recipient = recipient;
+    public void setContact(String recipient) {
+        this.contact = recipient;
     }
 
     public String getPhone() {

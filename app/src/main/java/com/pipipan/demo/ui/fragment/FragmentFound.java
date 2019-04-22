@@ -86,16 +86,6 @@ public class FragmentFound extends MyLazyFragment implements XCollapsingToolbarL
 
     @Override
     protected void initData() {
-        orderAdapter = new OrderAdapter(getContext(), initializeData());
-    }
-
-    private List<Order> initializeData() {
-        //TODO 自己附近待接收的订单
-        List<Order> res = new ArrayList<>();
-        for (int i=0; i<10; ++i){
-            res.add(new Order());
-        }
-        return res;
     }
 
     @Override

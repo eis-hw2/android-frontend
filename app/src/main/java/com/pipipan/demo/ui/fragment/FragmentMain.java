@@ -212,6 +212,7 @@ public class FragmentMain extends MyLazyFragment
             @Override
             public void onResponse(Call<List<Store>> call, Response<List<Store>> response) {
                 List<Store> stores = response.body();
+                Constants.store = stores.get(0);
                 Log.e(TAG, "onResponse: " + CommonUtil.gson.toJson(stores));
                 Log.e(TAG, "onResponse: " + CommonUtil.gson.toJson(Constants.address));
                 storeAdapter.setData(stores);

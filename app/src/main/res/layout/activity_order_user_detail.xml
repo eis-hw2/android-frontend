@@ -1,62 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
+    android:orientation="vertical"
 tools:context=".ui.activity.OrderCheckoutActivity">
-
-<android.support.design.widget.AppBarLayout
-    android:id="@+id/abl_test_bar"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/douban_blue_80_percent"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-    app:elevation="0dp">
-    <com.pipipan.demo.widget.XCollapsingToolbarLayout
-        android:id="@+id/ctl_bar"
+    <com.hjq.bar.TitleBar
+        android:id="@+id/titlebar"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="wrap_content"
+        app:backButton="false"
+        app:barStyle="transparent"
         android:background="@color/douban_blue_80_percent"
-        app:contentScrim="@color/white"
-        app:layout_scrollFlags="scroll|exitUntilCollapsed"
-        app:scrimVisibleHeightTrigger="@dimen/space_200">
-        <com.baidu.mapapi.map.MapView
-            android:clickable="true"
-            android:id="@+id/map"
+        app:layout_collapseMode="pin">
+        <TextView
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textSize="16sp"
+            android:id="@+id/title"
+            android:textColor="@color/white80"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </com.baidu.mapapi.map.MapView>
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?android:attr/actionBarSize"
-            app:layout_collapseMode="pin" />
-        <com.hjq.bar.TitleBar
-            android:id="@+id/titlebar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:backButton="false"
-            app:barStyle="transparent"
-            app:layout_collapseMode="pin">
-            <TextView
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:textSize="16sp"
-                android:id="@+id/title"
-                android:text=""
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </com.hjq.bar.TitleBar>
-
-    </com.pipipan.demo.widget.XCollapsingToolbarLayout>
-
-</android.support.design.widget.AppBarLayout>
-
+            android:layout_height="match_parent" />
+    </com.hjq.bar.TitleBar>
+    <com.baidu.mapapi.map.MapView
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+    </com.baidu.mapapi.map.MapView>
 <android.support.v4.widget.NestedScrollView android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    android:layout_marginTop="10dp">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -337,4 +313,4 @@ tools:context=".ui.activity.OrderCheckoutActivity">
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>
 
-</android.support.design.widget.CoordinatorLayout>
+</LinearLayout>

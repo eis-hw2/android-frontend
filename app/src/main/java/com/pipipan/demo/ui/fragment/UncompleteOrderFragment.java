@@ -12,6 +12,7 @@ import com.pipipan.demo.common.Constants;
 import com.pipipan.demo.domain.Order;
 import com.pipipan.demo.helper.CommonUtil;
 import com.pipipan.demo.network.Network;
+import com.pipipan.demo.ui.adapter.OrderAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,6 @@ import retrofit2.Response;
 
 public class UncompleteOrderFragment extends FragmentOrder {
     private static final String TAG = "UncompleteOrderFragment";
-    static List<Order> orders;
     LocationClient mLocationClient;
     @Override
     public void initProxyOrderView() {
@@ -35,8 +35,21 @@ public class UncompleteOrderFragment extends FragmentOrder {
     }
 
     @Override
-    protected void initData() {
-        super.initData();
+    public void refreshData() {
+        Network.getInstance().getOrder("PROXY", null, null, Constants.user.getId()).enqueue(new Callback<List<Order>>() {
+            @Override
+            public void onResponse(Call<List<Order>> call, Response<List<Order>> response) {
+                List<Order> currentorders = response.body();
+                Log.e(TAG, "onResponse: " + CommonUtil.gson.toJson(currentorders));
+                orderAdapter = new OrderAdapter(getContext(), currentorders);
+                orders.setAdapter(orderAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<List<Order>> call, Throwable t) {
+
+            }
+        });
         mLocationClient = new LocationClient(getContext().getApplicationContext());
         initLocation();
         mLocationClient.registerLocationListener(new MyLocationListener());
@@ -54,10 +67,10 @@ public class UncompleteOrderFragment extends FragmentOrder {
         public void onReceiveLocation(BDLocation bdLocation) {
             double latitude = bdLocation.getLatitude();
             double longtitude = bdLocation.getLongitude();
+            Log.e(TAG, "onReceiveLocation: "+ CommonUtil.gson.toJson(bdLocation));
             List<Order> orders = orderAdapter.getData();
             if (orders == null) return;
             for (Order order : orders){
-                Log.e(TAG, "onReceiveLocation: "+ CommonUtil.gson.toJson(order));
                 order.getAddress().setLatitude(latitude);
                 order.getAddress().setLatitude(longtitude);
                 Network.getInstance().modifyOrderById(order.getId(), order).enqueue(new Callback<Order>() {
@@ -73,24 +86,6 @@ public class UncompleteOrderFragment extends FragmentOrder {
                 });
             }
         }
-    }
-
-    @Override
-    public List<Order> initOrderData() {
-        //TODO 当前用户准备代跑腿的订单
-        Network.getInstance().getOrder("PROXY", null, null, Constants.user.getId()).enqueue(new Callback<List<Order>>() {
-            @Override
-            public void onResponse(Call<List<Order>> call, Response<List<Order>> response) {
-                orders = response.body();
-                Log.e(TAG, "onResponse: " + CommonUtil.gson.toJson(orders));
-            }
-
-            @Override
-            public void onFailure(Call<List<Order>> call, Throwable t) {
-
-            }
-        });
-        return orders;
     }
 
     @Override

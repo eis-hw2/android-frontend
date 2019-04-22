@@ -42,7 +42,7 @@ public interface Api {
     Call<List<Order>> getOrder(@Query("mode")String mode, @Query("latitude") Double latitude, @Query("longitude")Double longitudem, @Query("userId")Long userId);
     @GET("Order/{id}")
     Call<Order> getOrderById(@Path("id") long id);
-    @POST("Order")
+    @POST("v2/Order")
     Call<Order> createOrder(@Body Order order);
     @PUT("Order/{id}")
     Call<Order> modifyOrderById(@Path("id") long id, @Body Order order);

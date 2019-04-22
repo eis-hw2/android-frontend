@@ -39,9 +39,9 @@ public class AddressAdapter extends MyRecyclerViewAdapter<Recipient, AddressAdap
     public void onBindViewHolder(@NonNull AddressViewHolder addressViewHolder, int i) {
         Recipient recipient = getItem(i);
         addressViewHolder.addressLocation.setText(recipient.getAddress().getAddress());
-        addressViewHolder.detailLocation.setText(recipient.getDetailLocation());
+        addressViewHolder.detailLocation.setText(recipient.getDetaillocation());
         addressViewHolder.receiptPhone.setText(recipient.getPhone());
-        addressViewHolder.receiptName.setText(recipient.getRecipient());
+        addressViewHolder.receiptName.setText(recipient.getContact());
         if (isSelectAddress) {
             addressViewHolder.view.setOnClickListener((v -> {
                 itemListener.onItemClicked(recipient);

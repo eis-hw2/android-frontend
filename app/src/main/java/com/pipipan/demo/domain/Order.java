@@ -16,6 +16,7 @@ public class Order {
         order.setStore(store);
         order.setGoods(new ArrayList<>());
         order.setStatus(Status.WAITING);
+        order.setProxyLocation(store.getAddress());
         return order;
     }
 

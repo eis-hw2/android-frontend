@@ -64,33 +64,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </RelativeLayout>
-            <RelativeLayout
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_alignParentRight="true"
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <Button
-                        android:id="@+id/similiar"
-                        android:text = "相似商家"
-                        android:textSize="10sp"
-                        android:textColor="@color/douban_blue_80_percent"
-                        android:background="@drawable/shape_button"
-                        android:layout_width="50dp"
-                        android:layout_height="30dp" />
-                    <Button
-                        android:layout_marginLeft="20dp"
-                        android:text = "再来一单"
-                        android:textSize="10sp"
-                        android:textColor="@color/douban_blue_80_percent"
-                        android:background="@drawable/shape_button"
-                        android:layout_width="50dp"
-                        android:layout_height="30dp" />
-                </LinearLayout>
-            </RelativeLayout>
         </LinearLayout>
 
     </LinearLayout>

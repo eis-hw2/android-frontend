@@ -61,7 +61,6 @@ public class AddAddressActivity extends MyActivity {
         submit.setOnClickListener((v -> { ;
             Intent intent = new Intent();
             intent.putExtra("recipientAddress", gson.toJson(buildRecipientAddress()));
-            //TODO 发送请求进行保存
             Log.d(TAG, "initView: recipientAddress" + gson.toJson(buildRecipientAddress()));
             setResult(1, intent);
             finish();
@@ -70,10 +69,10 @@ public class AddAddressActivity extends MyActivity {
 
     private Recipient buildRecipientAddress(){
         Recipient recipient = new Recipient();
-        recipient.setRecipient(name.getText().toString());
+        recipient.setContact(name.getText().toString());
         recipient.setAddress(locationAddress);
         recipient.setPhone(phone.getText().toString());
-        recipient.setDetailLocation(detail_address.getText().toString());
+        recipient.setDetaillocation(detail_address.getText().toString());
         return recipient;
     }
 

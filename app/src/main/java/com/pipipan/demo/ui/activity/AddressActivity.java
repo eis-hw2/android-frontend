@@ -76,7 +76,7 @@ public class AddressActivity extends MyActivity{
         if (requestCode == 1){
             Gson gson = new Gson();
             String address = data.getStringExtra("recipientAddress");
-            if (!(address == null )){
+            if (address != null ){
                 Network.getInstance().addRecipient(Constants.user.getId(), CommonUtil.gson.fromJson(data.getStringExtra("recipientAddress"), Recipient.class)).enqueue(new Callback<Recipient>() {
                     @Override
                     public void onResponse(Call<Recipient> call, Response<Recipient> response) {

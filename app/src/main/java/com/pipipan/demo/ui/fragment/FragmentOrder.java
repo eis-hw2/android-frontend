@@ -77,19 +77,19 @@ public abstract class FragmentOrder extends MyLazyFragment {
 
     @Override
     protected void initData() {
-        orderAdapter = new OrderAdapter(getContext(), initOrderData());
+        orderAdapter = new OrderAdapter(getContext(), new ArrayList<>());
         orders.setAdapter(orderAdapter);
+        refreshData();
     }
-
-    public abstract List<Order> initOrderData();
 
     private void initRefreshLayout() {
         refreshLayout.setRefreshHeader(new DeliveryHeader(getContext()));
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
-                //refreshlayout.finishRefresh(true);//传入false表示刷新失败
-                orderAdapter.setData(initOrderData());
+                //orderAdapter.setData(initOrderData());
+                refreshData();
+                refreshlayout.finishRefresh(true);//传入false表示刷新失败
             }
         });
         refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
@@ -105,4 +105,6 @@ public abstract class FragmentOrder extends MyLazyFragment {
         // 使用沉浸式状态栏
         return !super.isStatusBarEnabled();
     }
+
+    public abstract void refreshData();
 }

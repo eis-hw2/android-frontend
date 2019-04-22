@@ -3,6 +3,7 @@ package com.pipipan.demo.ui.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,11 +34,10 @@ public class OrderAdapter extends MyRecyclerViewAdapter<Order, OrderAdapter.Orde
 
     @Override
     public void onBindViewHolder(@NonNull OrderViewHolder orderViewHolder, int i) {
-        //TODO 属性一一对应
         Order order = getItem(i);
-        orderViewHolder.storeName.setText(order.getStore().getStorename());
+        if (order.getStore() != null) orderViewHolder.storeName.setText(order.getStore().getStorename());
         orderViewHolder.good.setText(String.valueOf(order.getGoods().get(0).getGoodname()) + "等物品");
-        orderViewHolder.good.setText("￥" + String.valueOf(order.getGoodsprice() + order.getProxyprice()));
+        orderViewHolder.money.setText("￥" + String.valueOf(order.getGoodsprice() + order.getProxyprice()));
         switch (order.getStatus()){
             case WAITING:
                 orderViewHolder.status.setText("待接单");
@@ -51,7 +51,8 @@ public class OrderAdapter extends MyRecyclerViewAdapter<Order, OrderAdapter.Orde
         }
         orderViewHolder.view.setOnClickListener((v -> {
             Constants.order = order;
-            if (order.getProxy().getId() == Constants.user.getId()) {
+            Log.e("orderId", "onBindViewHolder: " + String.valueOf(order.getBuyer().getId()) + " " + Constants.user.getId());
+            if (!order.getBuyer().getId().equals(Constants.user.getId())) {
                 Intent intent = new Intent(getContext(), OrderProxyDetailActivity.class);
                 getContext().startActivity(intent);
             }

@@ -92,7 +92,6 @@ public class LoginActivity extends MyActivity {
                 startActivity(PasswordForgetActivity.class);
                 break;
             case R.id.btn_login_commit:
-                //TODO 调用服务器API验证登录
                 User user = new User();
                 user.setPassword(mPasswordView.getText().toString());
                 user.setPhone(mPhoneView.getText().toString());
