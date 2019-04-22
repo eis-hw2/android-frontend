@@ -9,6 +9,7 @@ import com.pipipan.demo.R;
 import com.pipipan.demo.common.MyLazyFragment;
 import com.pipipan.demo.domain.Good;
 import com.pipipan.demo.domain.Order;
+import com.pipipan.demo.domain.Store;
 import com.pipipan.demo.helper.CommonUtil;
 import com.pipipan.demo.ui.activity.OrderCheckoutActivity;
 import com.pipipan.demo.ui.adapter.GoodAdapter;
@@ -41,6 +42,11 @@ public class FragmentGood extends MyLazyFragment {
 
     GoodAdapter goodAdapter;
     Order order;
+    Store store;
+
+    public void setStore(Store store) {
+        this.store = store;
+    }
 
     @Override
     protected int getLayoutId() {
@@ -110,12 +116,6 @@ public class FragmentGood extends MyLazyFragment {
     }
 
     private List<Good> getGoodList() {
-        List<Good> goods = new ArrayList<>();
-        for (int i=0; i<10; ++i){
-            Good good = new Good();
-            good.setPrice(10);
-            goods.add(good);
-        }
-        return goods;
+        return store.getGoods();
     }
 }

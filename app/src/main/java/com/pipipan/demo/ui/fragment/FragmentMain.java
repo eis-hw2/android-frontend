@@ -26,7 +26,9 @@ import com.pipipan.demo.common.Constants;
 import com.pipipan.demo.common.MyLazyFragment;
 import com.pipipan.demo.domain.Address;
 import com.pipipan.demo.domain.Store;
+import com.pipipan.demo.helper.CommonUtil;
 import com.pipipan.demo.helper.GlideImageLoader;
+import com.pipipan.demo.network.Network;
 import com.pipipan.demo.ui.activity.SelectAddressByMapActivity;
 import com.pipipan.demo.ui.adapter.StoreAdapter;
 import com.pipipan.demo.widget.XCollapsingToolbarLayout;
@@ -36,6 +38,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  *    author : Android 轮子哥
@@ -139,11 +144,7 @@ public class FragmentMain extends MyLazyFragment
     }
 
     private List<Store> getStoreList() {
-        List<Store> stores = new ArrayList<>();
-        for (int i=0; i<30; ++i)
-            stores.add(new Store());
-        return stores;
-
+        return new ArrayList<>();
     }
 
     @Override
@@ -189,6 +190,7 @@ public class FragmentMain extends MyLazyFragment
                 address = gson.fromJson(data.getStringExtra("address"), Address.class);
                 Constants.address = address;
                 mAddressView.setText(address.getAddress());
+                initLocalStore();
         }
     }
 
@@ -200,9 +202,26 @@ public class FragmentMain extends MyLazyFragment
                 Constants.address = address;
                 Log.e(TAG, "onReceiveLocation: receiveLocation: " + gson.toJson(bdLocation));
                 mAddressView.setText(address.getAddress());
-                //TODO 初始化周围商店
+                initLocalStore();
             });
         }
+    }
+
+    private void initLocalStore() {
+        Network.getInstance().getStore("NEARBY", Constants.address.getLatitude(), Constants.address.getLongitude()).enqueue(new Callback<List<Store>>() {
+            @Override
+            public void onResponse(Call<List<Store>> call, Response<List<Store>> response) {
+                List<Store> stores = response.body();
+                Log.e(TAG, "onResponse: " + CommonUtil.gson.toJson(stores));
+                Log.e(TAG, "onResponse: " + CommonUtil.gson.toJson(Constants.address));
+                storeAdapter.setData(stores);
+            }
+
+            @Override
+            public void onFailure(Call<List<Store>> call, Throwable t) {
+
+            }
+        });
     }
 
     @NonNull

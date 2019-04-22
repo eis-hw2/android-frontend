@@ -125,7 +125,13 @@ tools:context=".ui.activity.GoodActivity">
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
-            <TextView
+            <com.pipipan.demo.widget.MarqueTextView
+                android:width="200dp"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:singleLine="true"
+                android:gravity="center"
+                android:id="@+id/description"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
                 android:text="欢迎光临，用餐高峰期请提前下单，谢谢"

@@ -13,19 +13,24 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.hjq.bar.TitleBar;
 import com.pipipan.demo.R;
 import com.pipipan.demo.common.MyActivity;
+import com.pipipan.demo.domain.Order;
 import com.pipipan.demo.domain.Store;
+import com.pipipan.demo.helper.CommonUtil;
 import com.pipipan.demo.ui.Listener.AppBarStateChangeListener;
 import com.pipipan.demo.ui.adapter.FragmentAdapter;
 import com.pipipan.demo.ui.fragment.FragmentComment;
 import com.pipipan.demo.ui.fragment.FragmentGood;
+import com.pipipan.demo.ui.fragment.FragmentOrder;
 import com.pipipan.demo.ui.fragment.FragmentStoreInformation;
 import com.pipipan.demo.ui.fragment.FragmentUser;
 import com.pipipan.demo.ui.fragment.FragmentUserLogin;
+import com.pipipan.demo.widget.MarqueTextView;
 import com.pipipan.demo.widget.XCollapsingToolbarLayout;
 
 import java.util.ArrayList;
@@ -36,7 +41,6 @@ import butterknife.BindView;
 
 public class GoodActivity extends MyActivity
                             implements XCollapsingToolbarLayout.OnScrimsListener {
-    public final static String STOREID = "storeID";
     Store store;
     @BindView(R.id.abl_test_bar)
     AppBarLayout mAppBarLayout;
@@ -54,6 +58,10 @@ public class GoodActivity extends MyActivity
     ViewPager viewPager;
     @BindView(R.id.scroll)
     NestedScrollView scrollView;
+    @BindView(R.id.storeName)
+    TextView storeName;
+    @BindView(R.id.description)
+    MarqueTextView description;
 
     @Override
     protected int getLayoutId() {
@@ -67,6 +75,7 @@ public class GoodActivity extends MyActivity
 
     @Override
     protected void initView() {
+        store = CommonUtil.gson.fromJson(getIntent().getStringExtra("store"), Store.class);
         mAppBarLayout.addOnOffsetChangedListener(new AppBarStateChangeListener() {
             @Override
             public void onStateChanged(AppBarLayout appBarLayout, State state) {
@@ -85,7 +94,9 @@ public class GoodActivity extends MyActivity
         });
         scrollView.setFillViewport(true);
         getWindow().setStatusBarColor(getResources().getColor(R.color.douban_blue_80_percent));
-        //TODO 前后端对接得到store
+        storeName.setText(store.getStorename());
+        description.setSelected(true);
+        if (store.getDescription() != null && !store.getDescription().isEmpty()) description.setText(store.getDescription());
         initViewPager();
     }
 
@@ -101,7 +112,9 @@ public class GoodActivity extends MyActivity
     }
 
     private List<Fragment> initFragments(){
-        return Arrays.asList(new FragmentGood(), new FragmentComment(), new FragmentStoreInformation());
+        FragmentGood fragmentGood = new FragmentGood();
+        fragmentGood.setStore(store);
+        return Arrays.asList(fragmentGood, new FragmentComment(), new FragmentStoreInformation());
     }
 
     @Override
