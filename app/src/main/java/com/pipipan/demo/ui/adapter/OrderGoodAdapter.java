@@ -31,18 +31,22 @@ public class OrderGoodAdapter extends MyRecyclerViewAdapter<Good, OrderGoodAdapt
 
     @Override
     public void onBindViewHolder(@NonNull OrderGoodViewHolder orderViewHolder, int i) {
-        //TODO 绑定对应的信息
+        Good good = getItem(i);
+        orderViewHolder.money.setText(String.valueOf(good.getPrice()));
+        orderViewHolder.name.setText(good.getGoodname());
     }
 
     class OrderGoodViewHolder extends MyRecyclerViewAdapter.ViewHolder{
         View view;
         ImageView image;
+        TextView name;
         TextView money;
         public OrderGoodViewHolder(View itemView) {
             super(itemView);
             this.view = itemView;
             this.image = itemView.findViewById(R.id.image);
             this.money = itemView.findViewById(R.id.money);
+            this.name = itemView.findViewById(R.id.name);
         }
     }
 }

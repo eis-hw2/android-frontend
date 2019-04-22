@@ -10,11 +10,13 @@ import android.widget.TextView;
 
 import com.hjq.bar.TitleBar;
 import com.pipipan.demo.R;
+import com.pipipan.demo.common.Constants;
 import com.pipipan.demo.common.MyActivity;
 import com.pipipan.demo.domain.Good;
 import com.pipipan.demo.domain.Order;
 import com.pipipan.demo.domain.Recipient;
 import com.pipipan.demo.helper.CommonUtil;
+import com.pipipan.demo.network.Network;
 import com.pipipan.demo.ui.adapter.OrderGoodAdapter;
 import com.pipipan.demo.widget.XCollapsingToolbarLayout;
 
@@ -22,6 +24,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class OrderCheckoutActivity extends MyActivity implements XCollapsingToolbarLayout.OnScrimsListener{
     private static final String TAG = "OrderCheckoutActivity";
@@ -44,6 +49,16 @@ public class OrderCheckoutActivity extends MyActivity implements XCollapsingTool
     @BindView(R.id.title)
     TextView title;
 
+    @BindView(R.id.checkout)
+    TextView checkout;
+    @BindView(R.id.bottom_total)
+    TextView bottomTotal;
+    @BindView(R.id.totalPrice)
+    TextView totalPrice;
+    @BindView(R.id.storeName)
+    TextView storeName;
+    @BindView(R.id.proxyPrice)
+    TextView proxyPrice;
 
     Order order;
     Recipient userRecipient;
@@ -79,28 +94,42 @@ public class OrderCheckoutActivity extends MyActivity implements XCollapsingTool
     protected void initView() {
         getWindow().setStatusBarColor(getResources().getColor(R.color.douban_blue_80_percent));
         //设置渐变监听
+        order = Constants.order;
+        Log.e(TAG, "initData: " + CommonUtil.gson.toJson(order));
+        userRecipient = order.getRecipient();
         mCollapsingToolbarLayout.setOnScrimsListener(this);
         receipt.setOnClickListener((v -> {
             Intent intent = new Intent(getContext(), AddressActivity.class);
             intent.putExtra("isSelectAddress", true);
             startActivityForResult(intent, 0);
         }));
+        initRecipient();
+        storeName.setText(order.getStore().getStorename());
+        totalPrice.setText(String.valueOf(order.getGoodsprice()));
+        bottomTotal.setText(String.valueOf(order.getGoodsprice() + order.getProxyprice()));
+        proxyPrice.setText(String.valueOf(order.getProxyprice()));
+        checkout.setOnClickListener((v -> {
+            Network.getInstance().createOrder(order).enqueue(new Callback<Order>() {
+                @Override
+                public void onResponse(Call<Order> call, Response<Order> response) {
+                    startActivity(HomeActivity.class);
+                }
+
+                @Override
+                public void onFailure(Call<Order> call, Throwable t) {
+
+                }
+            });
+        }));
     }
 
     @Override
     protected void initData() {
-        order = CommonUtil.gson.fromJson(getIntent().getStringExtra("order"), Order.class);
-        Log.e(TAG, "initData: " + CommonUtil.gson.toJson(order));
         goods.setAdapter(new OrderGoodAdapter(getContext(), prepareGood()));
     }
 
     private List<Good> prepareGood() {
-        //TODO 从order中拿取数据
-        List<Good> res = new ArrayList<>();
-        for (int i=0; i<15; ++i){
-            res.add(new Good());
-        }
-        return res;
+        return order.getGoods();
     }
 
 

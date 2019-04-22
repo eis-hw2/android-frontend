@@ -32,7 +32,7 @@ public class Order {
     private String modifiedtime;
     private Order.Status status;
     private Store store;
-    private Address proxyLocation;
+    private Address address;
 
     public long getId() {
         return id;
@@ -114,11 +114,11 @@ public class Order {
         this.store = store;
     }
 
-    public Address getProxyLocation() {
-        return proxyLocation;
+    public Address getAddress() {
+        return address;
     }
 
     public void setProxyLocation(Address proxyLocation) {
-        this.proxyLocation = proxyLocation;
+        this.address = proxyLocation;
     }
 }

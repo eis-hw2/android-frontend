@@ -1,6 +1,6 @@
 package com.pipipan.demo.domain;
 
-class NullRecipient extends Recipient {
+public class NullRecipient extends Recipient {
     @Override
     public String getDetailLocation() {
         return "不知道路";
@@ -8,8 +8,7 @@ class NullRecipient extends Recipient {
 
     @Override
     public Address getAddress() {
-        Address address = new Address("不知道区", 0.0, 0.0);
-        return address;
+        return new Address("不知道区", 0.0, 0.0);
     }
 
     @Override

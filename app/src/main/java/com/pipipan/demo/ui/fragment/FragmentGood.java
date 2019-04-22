@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.pipipan.demo.R;
+import com.pipipan.demo.common.Constants;
 import com.pipipan.demo.common.MyLazyFragment;
 import com.pipipan.demo.domain.Good;
 import com.pipipan.demo.domain.Order;
@@ -63,7 +64,7 @@ public class FragmentGood extends MyLazyFragment {
         checkout.setEnabled(false);
         checkout.setOnClickListener((v -> {
             Intent intent = new Intent(getContext(), OrderCheckoutActivity.class);
-            intent.putExtra("order", CommonUtil.gson.toJson(order));
+            Constants.order = order;
             startActivity(intent);
         }));
     }

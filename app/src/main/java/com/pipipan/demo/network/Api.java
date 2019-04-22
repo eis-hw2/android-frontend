@@ -1,5 +1,9 @@
 package com.pipipan.demo.network;
 
+import com.pipipan.demo.domain.Address;
+import com.pipipan.demo.domain.Good;
+import com.pipipan.demo.domain.Order;
+import com.pipipan.demo.domain.Recipient;
 import com.pipipan.demo.domain.Store;
 import com.pipipan.demo.domain.User;
 
@@ -33,4 +37,19 @@ public interface Api {
     @GET("Store/{id}")
     Call<Store> getStoreById(@Path("id") long id);
 
+    // order
+    @GET("Order")
+    Call<List<Order>> getOrder(@Query("mode")String mode, @Query("latitude") Double latitude, @Query("longitude")Double longitudem, @Query("userId")String userId);
+    @GET("Order/{id}")
+    Call<Order> getOrderById(@Path("id") long id);
+    @POST("Order")
+    Call<Order> createOrder(@Body Order order);
+    @PUT("Order/{id}")
+    Call<Order> modifyOrderById(@Path("id") long id, @Body Order order);
+
+    // address
+    @GET("RecipientAddress/{id}")
+    Call<List<Address>> getAddressById(@Path("id") long id);
+    @POST("RecipientAddress/user/{id}")
+    Call<Recipient> addRecipient(@Path("id") long id, @Body Recipient recipient);
 }

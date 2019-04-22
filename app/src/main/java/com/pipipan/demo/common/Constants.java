@@ -1,6 +1,7 @@
 package com.pipipan.demo.common;
 
 import com.pipipan.demo.domain.Address;
+import com.pipipan.demo.domain.Order;
 import com.pipipan.demo.domain.Store;
 import com.pipipan.demo.domain.User;
 
@@ -8,6 +9,7 @@ public class Constants {
     public static String user_id = "";
     public static User user;
     public static Store store;
+    public static Order order;
     public static String BaiduMapKey = "vkX9wsQivFUOSALFZLX2ozLzlt8EBGzp";
     public static Address address;
     //OSS
