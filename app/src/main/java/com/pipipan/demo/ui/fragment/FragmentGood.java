@@ -70,7 +70,7 @@ public class FragmentGood extends MyLazyFragment {
 
     @Override
     protected void initData() {
-        order = Order.createOrder();
+        order = Order.createOrder(store);
         goodAdapter = new GoodAdapter(getContext(), getGoodList());
         goodAdapter.setOrderListener(goodAdapter.new OrderListener(){
             @Override

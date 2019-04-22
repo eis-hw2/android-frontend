@@ -56,7 +56,7 @@ android:layout_height="wrap_content">
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
-                android:id="@+id/proxyPrice"
+                android:id="@+id/price"
                 android:layout_toRightOf="@+id/moneysignature"
                 android:layout_centerVertical="true"
                 android:textColor="@color/dark_orange"

@@ -6,10 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
-    public static Order createOrder() {
+    public static Order createOrder(Store store) {
         Order order = new Order();
+        if (!Constants.user.getAddress().isEmpty())
+            order.setRecipient(Constants.user.getAddress().get(0));
+        else order.setRecipient(new NullRecipient());
+        order.setProxyprice(10);
         order.setBuyer(Constants.user);
-        order.setStore(Constants.store);
+        order.setStore(store);
         order.setGoods(new ArrayList<>());
         order.setStatus(Status.WAITING);
         return order;

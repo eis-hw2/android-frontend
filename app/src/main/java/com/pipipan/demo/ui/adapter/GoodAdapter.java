@@ -33,6 +33,8 @@ public class GoodAdapter extends MyRecyclerViewAdapter<Good, GoodAdapter.GoodVie
     @Override
     public void onBindViewHolder(@NonNull GoodViewHolder goodViewHolder, int i) {
         Good good = getItem(i);
+        goodViewHolder.name.setText(good.getGoodname());
+        goodViewHolder.price.setText(String.valueOf(good.getPrice()));
         goodViewHolder.add.setOnClickListener((v -> {
             int count = Integer.valueOf(goodViewHolder.count.getText().toString());
             if (count == 0){
@@ -54,12 +56,16 @@ public class GoodAdapter extends MyRecyclerViewAdapter<Good, GoodAdapter.GoodVie
         ImageView add;
         ImageView minus;
         TextView count;
+        TextView name;
+        TextView price;
         public GoodViewHolder(View itemView) {
             super(itemView);
             this.view = itemView;
             this.add = itemView.findViewById(R.id.add);
             this.minus = itemView.findViewById(R.id.minus);
             this.count = itemView.findViewById(R.id.count);
+            this.name = itemView.findViewById(R.id.name);
+            this.price = itemView.findViewById(R.id.price);
         }
     }
 
