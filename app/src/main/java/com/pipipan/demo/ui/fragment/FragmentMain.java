@@ -11,11 +11,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
@@ -24,23 +22,20 @@ import com.google.gson.Gson;
 import com.gyf.barlibrary.ImmersionBar;
 import com.hjq.bar.TitleBar;
 import com.pipipan.demo.R;
+import com.pipipan.demo.common.Constants;
 import com.pipipan.demo.common.MyLazyFragment;
 import com.pipipan.demo.domain.Address;
 import com.pipipan.demo.domain.Store;
 import com.pipipan.demo.helper.GlideImageLoader;
-import com.pipipan.demo.ui.activity.MapActivity;
 import com.pipipan.demo.ui.activity.SelectAddressByMapActivity;
 import com.pipipan.demo.ui.adapter.StoreAdapter;
 import com.pipipan.demo.widget.XCollapsingToolbarLayout;
-import com.pipipan.image.ImageLoader;
 import com.youth.banner.Banner;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-
-import static android.support.constraint.Constraints.TAG;
 
 /**
  *    author : Android 轮子哥
@@ -192,7 +187,8 @@ public class FragmentMain extends MyLazyFragment
         switch (requestCode){
             case 1:
                 address = gson.fromJson(data.getStringExtra("address"), Address.class);
-                mAddressView.setText(address.getAddressLocationName());
+                Constants.address = address;
+                mAddressView.setText(address.getAddress());
         }
     }
 
@@ -201,8 +197,9 @@ public class FragmentMain extends MyLazyFragment
         public void onReceiveLocation(BDLocation bdLocation) {
             getActivity().runOnUiThread(() -> {
                 address = new Address(getAddressLocationName(bdLocation), bdLocation.getLongitude(), bdLocation.getLatitude());
+                Constants.address = address;
                 Log.e(TAG, "onReceiveLocation: receiveLocation: " + gson.toJson(bdLocation));
-                mAddressView.setText(address.getAddressLocationName());
+                mAddressView.setText(address.getAddress());
                 //TODO 初始化周围商店
             });
         }
@@ -210,7 +207,8 @@ public class FragmentMain extends MyLazyFragment
 
     @NonNull
     private String getAddressLocationName(BDLocation bdLocation) {
-        return bdLocation.getDistrict() + " " + bdLocation.getStreet() + " " + bdLocation.getStreetNumber();
+        String streetNumber = bdLocation.getStreetNumber();
+        return bdLocation.getDistrict() + " " + bdLocation.getStreet() + " " + streetNumber.substring(0, streetNumber.indexOf("号")+1);
     }
 
     @Override

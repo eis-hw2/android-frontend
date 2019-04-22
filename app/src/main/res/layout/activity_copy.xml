@@ -84,12 +84,19 @@ tools:context=".ui.activity.OrderCheckoutActivity">
         <com.hjq.bar.TitleBar
             android:id="@+id/titlebar"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             app:backButton="false"
             app:barStyle="transparent"
-            app:titleColor="@color/black"
-            app:titleSize="16sp"
             app:layout_collapseMode="pin">
+
+            <TextView
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textSize="16sp"
+                android:id="@+id/title"
+                android:text=""
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
         </com.hjq.bar.TitleBar>
 
     </com.pipipan.demo.widget.XCollapsingToolbarLayout>

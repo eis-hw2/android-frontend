@@ -29,7 +29,7 @@
     <Button
         android:id="@+id/view"
         android:visibility="gone"
-        android:text="查看派送路线"
+        android:text="查看推荐路线"
         android:layout_margin="20dp"
         android:textColor="@color/white80"
         android:background="@color/light_green"

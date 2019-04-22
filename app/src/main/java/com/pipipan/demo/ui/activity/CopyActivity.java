@@ -1,6 +1,7 @@
 package com.pipipan.demo.ui.activity;
 
 import android.support.v7.widget.Toolbar;
+import android.widget.TextView;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.hjq.bar.TitleBar;
@@ -24,6 +25,8 @@ public class CopyActivity extends MyActivity implements XCollapsingToolbarLayout
     Toolbar toolbar;
     @BindView(R.id.ctl_bar)
     XCollapsingToolbarLayout mCollapsingToolbarLayout;
+    @BindView(R.id.title)
+    TextView title;
 
     @Override
     protected int getLayoutId() {
@@ -38,6 +41,7 @@ public class CopyActivity extends MyActivity implements XCollapsingToolbarLayout
     @Override
     protected void initView() {
         ImmersionBar.setTitleBar(getActivity(), toolbar);
+        getWindow().setStatusBarColor(getResources().getColor(R.color.douban_blue_80_percent));
         //设置渐变监听
         mCollapsingToolbarLayout.setOnScrimsListener(this);
 
@@ -53,11 +57,11 @@ public class CopyActivity extends MyActivity implements XCollapsingToolbarLayout
     public void onScrimsStateChange(boolean shown) {
         // CollapsingToolbarLayout 发生了渐变
         if (shown) {
-            titleBar.setTitle("我的");
-            getStatusBarConfig().statusBarDarkFont(true).init();
+            title.setText("订单详情");
+            getWindow().setStatusBarColor(getResources().getColor(R.color.white));
         }else {
-            titleBar.setTitle("");
-            getStatusBarConfig().statusBarDarkFont(false).init();
+            title.setText("");
+            getWindow().setStatusBarColor(getResources().getColor(R.color.douban_blue_80_percent));
         }
     }
 

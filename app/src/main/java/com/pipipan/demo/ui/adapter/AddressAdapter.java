@@ -1,7 +1,6 @@
 package com.pipipan.demo.ui.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +9,7 @@ import android.widget.TextView;
 
 import com.pipipan.demo.R;
 import com.pipipan.demo.common.MyRecyclerViewAdapter;
-import com.pipipan.demo.domain.Address;
 import com.pipipan.demo.domain.Recipient;
-import com.pipipan.demo.helper.CommonUtil;
 
 import java.util.List;
 
@@ -41,7 +38,7 @@ public class AddressAdapter extends MyRecyclerViewAdapter<Recipient, AddressAdap
     @Override
     public void onBindViewHolder(@NonNull AddressViewHolder addressViewHolder, int i) {
         Recipient recipient = getItem(i);
-        addressViewHolder.addressLocation.setText(recipient.getAddress().getAddressLocationName());
+        addressViewHolder.addressLocation.setText(recipient.getAddress().getAddress());
         addressViewHolder.detailLocation.setText(recipient.getDetailLocation());
         addressViewHolder.receiptPhone.setText(recipient.getPhone());
         addressViewHolder.receiptName.setText(recipient.getRecipient());

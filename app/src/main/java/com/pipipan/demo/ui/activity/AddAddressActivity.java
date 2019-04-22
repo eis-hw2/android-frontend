@@ -7,7 +7,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.pipipan.demo.R;
 import com.pipipan.demo.common.MyActivity;
 import com.pipipan.demo.domain.Address;
@@ -48,7 +47,7 @@ public class AddAddressActivity extends MyActivity {
         switch (requestCode){
             case 1:
                 locationAddress = gson.fromJson(data.getStringExtra("address"), Address.class);
-                address.setText(locationAddress.getAddressLocationName());
+                address.setText(locationAddress.getAddress());
                 Log.d(TAG, "onActivityResult: longitude " + locationAddress.getLongitude());
         }
     }

@@ -47,6 +47,8 @@ public class OrderProxyDetailActivity extends MyActivity implements XCollapsingT
     Button receiveOrder;
     @BindView(R.id.receiveGood)
     Button receiveGood;
+    @BindView(R.id.title)
+    TextView title;
 
 
     Order order;
@@ -65,17 +67,16 @@ public class OrderProxyDetailActivity extends MyActivity implements XCollapsingT
     @Override
     protected void initView() {
         getWindow().setStatusBarColor(getResources().getColor(R.color.douban_blue_80_percent));
-        ImmersionBar.setTitleBar(getActivity(), toolbar);
         //设置渐变监听
         mCollapsingToolbarLayout.setOnScrimsListener(this);
         //TODO 填充收件人信息
-        if (getIntent().getBooleanExtra("isWaiting", false)) receiveOrder.setVisibility(View.VISIBLE);
-        else receiveGood.setVisibility(View.VISIBLE);
     }
 
     @Override
     protected void initData() {
         order = CommonUtil.gson.fromJson(getIntent().getStringExtra("order"), Order.class);
+        if (order.getStatus().equals(Order.Status.WAITING)) receiveOrder.setVisibility(View.VISIBLE);
+        else receiveGood.setVisibility(View.VISIBLE);
         Log.e(TAG, "initData: " + CommonUtil.gson.toJson(order));
         goods.setAdapter(new OrderGoodAdapter(getContext(), prepareGood()));
     }
@@ -93,8 +94,10 @@ public class OrderProxyDetailActivity extends MyActivity implements XCollapsingT
     public void onScrimsStateChange(boolean shown) {
         // CollapsingToolbarLayout 发生了渐变
         if (shown) {
+            title.setText("订单详情");
             getWindow().setStatusBarColor(getResources().getColor(R.color.white));
         }else {
+            title.setText("");
             getWindow().setStatusBarColor(getResources().getColor(R.color.douban_blue_80_percent));
         }
     }

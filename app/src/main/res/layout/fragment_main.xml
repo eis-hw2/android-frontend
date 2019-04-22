@@ -74,7 +74,6 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/space_20"
                         android:gravity="center_vertical"
-                        android:text="上海交通大学"
                         android:textColor="@color/white"
                         android:textSize="@dimen/font_size_30px" />
                 </LinearLayout>

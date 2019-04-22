@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.hjq.bar.TitleBar;
 import com.pipipan.demo.R;
 import com.pipipan.demo.common.MyActivity;
-import com.pipipan.demo.domain.Address;
 import com.pipipan.demo.domain.Good;
 import com.pipipan.demo.domain.Order;
 import com.pipipan.demo.domain.Recipient;
@@ -42,6 +41,8 @@ public class OrderCheckoutActivity extends MyActivity implements XCollapsingTool
     TextView receiptName;
     @BindView(R.id.receiptPhone)
     TextView receiptPhone;
+    @BindView(R.id.title)
+    TextView title;
 
 
     Order order;
@@ -69,13 +70,16 @@ public class OrderCheckoutActivity extends MyActivity implements XCollapsingTool
     }
 
     private void initRecipient() {
-        address.setText(userRecipient.getAddress().getAddressLocationName() + " " + userRecipient.getDetailLocation());
+        address.setText(userRecipient.getAddress().getAddress() + " " + userRecipient.getDetailLocation());
         receiptName.setText(userRecipient.getRecipient());
         receiptPhone.setText(userRecipient.getPhone());
     }
 
     @Override
     protected void initView() {
+        getWindow().setStatusBarColor(getResources().getColor(R.color.douban_blue_80_percent));
+        //设置渐变监听
+        mCollapsingToolbarLayout.setOnScrimsListener(this);
         receipt.setOnClickListener((v -> {
             Intent intent = new Intent(getContext(), AddressActivity.class);
             intent.putExtra("isSelectAddress", true);
@@ -104,11 +108,11 @@ public class OrderCheckoutActivity extends MyActivity implements XCollapsingTool
     public void onScrimsStateChange(boolean shown) {
         // CollapsingToolbarLayout 发生了渐变
         if (shown) {
-            titleBar.setTitle("");
-            getStatusBarConfig().statusBarDarkFont(true).init();
+            title.setText("订单详情");
+            getWindow().setStatusBarColor(getResources().getColor(R.color.white));
         }else {
-            titleBar.setTitle("订单");
-            getStatusBarConfig().statusBarDarkFont(false).init();
+            title.setText("");
+            getWindow().setStatusBarColor(getResources().getColor(R.color.douban_blue_80_percent));
         }
     }
 

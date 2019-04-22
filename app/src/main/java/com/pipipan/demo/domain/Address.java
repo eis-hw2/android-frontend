@@ -1,22 +1,22 @@
 package com.pipipan.demo.domain;
 
 public class Address {
-    String addressLocationName;
+    String address;
     Double longitude;
     Double latitude;
 
     public Address(String addressLocationName, Double longitude, Double latitude) {
-        this.addressLocationName = addressLocationName;
+        this.address = addressLocationName;
         this.longitude = longitude;
         this.latitude = latitude;
     }
 
-    public String getAddressLocationName() {
-        return addressLocationName;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAddressLocationName(String addressLocationName) {
-        this.addressLocationName = addressLocationName;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public Double getLongitude() {
